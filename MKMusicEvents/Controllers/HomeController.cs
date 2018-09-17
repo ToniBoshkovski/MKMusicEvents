@@ -32,9 +32,14 @@ namespace MKMusicEvents.Controllers
             return View();
         }
 
-        public ActionResult EventInfo()
-        { 
-            return View();
+        public ActionResult EventInfo(int id)
+        {
+            Event model = db.Events.Find(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)
