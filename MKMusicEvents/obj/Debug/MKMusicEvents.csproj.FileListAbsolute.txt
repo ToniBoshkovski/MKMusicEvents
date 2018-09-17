@@ -174,3 +174,4 @@ C:\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.Migrations.AddDa
 C:\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csproj.GenerateResource.Cache
 C:\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.dll
 C:\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.pdb
+C:\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.Migrations.AddIsAdmin.resources

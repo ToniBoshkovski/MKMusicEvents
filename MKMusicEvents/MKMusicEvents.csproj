@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201809110919506_AddDateAndLoginPartial.Designer.cs">
       <DependentUpon>201809110919506_AddDateAndLoginPartial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809171401006_AddIsAdmin.cs" />
+    <Compile Include="Migrations\201809171401006_AddIsAdmin.Designer.cs">
+      <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809110919506_AddDateAndLoginPartial.resx">
       <DependentUpon>201809110919506_AddDateAndLoginPartial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809171401006_AddIsAdmin.resx">
+      <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

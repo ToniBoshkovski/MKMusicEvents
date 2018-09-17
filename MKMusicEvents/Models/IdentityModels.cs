@@ -16,6 +16,8 @@ namespace MKMusicEvents.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public int IsAdmin { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
