@@ -1,0 +1,118 @@
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\MKMusicEvents.dll.config
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\MKMusicEvents.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\MKMusicEvents.pdb
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Antlr3.Runtime.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\EntityFramework.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\EntityFramework.SqlServer.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Core.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Cookies.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Facebook.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Google.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.OAuth.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Twitter.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Web.Infrastructure.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Newtonsoft.Json.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Owin.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Helpers.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Mvc.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Optimization.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Razor.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Deployment.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Razor.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\WebGrease.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\EntityFramework.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\EntityFramework.SqlServer.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Helpers.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Mvc.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Optimization.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.Razor.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Deployment.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Razor.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Antlr3.Runtime.pdb
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Newtonsoft.Json.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Core.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Facebook.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Cookies.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.OAuth.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Google.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Twitter.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csprojResolveAssemblyReference.cache
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.dll
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.pdb
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.Migrations.InitialCreate.resources
+c:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csproj.GenerateResource.Cache
+C:\Users\Momentum\Documents\Visual Studio 2013\Projects\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.Migrations.AddDateAndLoginPartial.resources
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\MKMusicEvents.dll.config
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\MKMusicEvents.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\MKMusicEvents.pdb
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Antlr3.Runtime.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\EntityFramework.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\EntityFramework.SqlServer.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Newtonsoft.Json.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Owin.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Helpers.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Mvc.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Optimization.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Razor.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Deployment.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Razor.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\WebGrease.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\EntityFramework.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\EntityFramework.SqlServer.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Helpers.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Mvc.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Optimization.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.Razor.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Deployment.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\System.Web.WebPages.Razor.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Antlr3.Runtime.pdb
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Newtonsoft.Json.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csprojAssemblyReference.cache
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.Migrations.InitialCreate.resources
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.Migrations.AddDateAndLoginPartial.resources
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csproj.GenerateResource.cache
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csproj.CoreCompileInputs.cache
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.csproj.CopyComplete
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.dll
+C:\Users\boshk\Desktop\MKMusicEvents\MKMusicEvents\obj\Debug\MKMusicEvents.pdb
