@@ -12,9 +12,12 @@ using MKMusicEvents.Models;
 
 namespace MKMusicEvents.Controllers
 {
+    
+
     [Authorize]
     public class AccountController : Controller
     {
+        
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -72,6 +75,8 @@ namespace MKMusicEvents.Controllers
             {
                 return View(model);
             }
+
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true

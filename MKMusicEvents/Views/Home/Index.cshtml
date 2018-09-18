@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <button class="btn btn-primary btn-lg pull-left">Add Event</button>
+            <button id="btnAddEvent" class="btn btn-primary btn-lg pull-left" data-toggle="modal" data-target="#modalAddEvent">Add Event</button>
             @using (Html.BeginForm("Index", "Home", FormMethod.Get))
             {
                 <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
@@ -18,7 +18,6 @@
 </div>
 
 <br />
- 
 <div class="row" id="row-events">
     @foreach (var item in Model)
     {
@@ -30,7 +29,9 @@
                             <h5>@item.Date</h5>
                         </div>
                         <div class="col-md-6 text-right">
-                            <button class="btn btn-sm btn-danger"><i class="fa fa-heart"></i></button>
+                            <button class="btn btn-sm btn-success btnEdit"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-sm btn-danger btnRemove"><i class="fa fa-remove"></i></button>
+                            <button class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
                         </div>
                     </div>
                 </div>
@@ -62,3 +63,56 @@
     }
 </div>
 <!-- /.row -->
+
+<!-- Modal Add Event -->
+<div class="modal fade" id="modalAddEvent" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalLabel">Add New Event</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image:</label>
+                        <input type="text" class="form-control" id="image">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date:</label>
+                        <input type="date" class="form-control" id="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <input type="text" class="form-control" id="description">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            if(@ViewBag.IsAdmin == "1"){
+                $('#btnAddEvent').show();
+                $('.btnEdit').show();
+                $('.btnRemove').show();
+            }else{
+                $('#btnAddEvent').hide();
+                $('.btnEdit').hide();
+                $('.btnRemove').hide();
+            }
+        });
+    </script>
+}

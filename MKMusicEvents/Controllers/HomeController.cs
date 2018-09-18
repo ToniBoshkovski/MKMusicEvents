@@ -12,10 +12,18 @@ namespace MKMusicEvents.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
+
         public ActionResult Index(string search)
         {
+            ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
             var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null );
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(Event model)
+        {
+            return View();
         }
 
         public ActionResult About()
