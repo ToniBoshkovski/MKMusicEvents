@@ -31,9 +31,6 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("About", "Home")">About</a>
-                    </li>
                     <li class="nav-item" style="border-right: 1px solid white">
                         <a class="nav-link" href="@Url.Action("Contact", "Home")">Contact</a>
                     </li>
@@ -60,6 +57,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/MKMusicEvents.js")
     @RenderSection("scripts", required: false)
 
 </body>

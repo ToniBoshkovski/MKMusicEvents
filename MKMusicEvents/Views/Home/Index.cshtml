@@ -7,7 +7,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <button id="btnAddEvent" class="btn btn-primary btn-lg pull-left" data-toggle="modal" data-target="#modalAddEvent">Add Event</button>
+            @*<button id="btnAddEvent" class="btn btn-primary btn-lg pull-left" data-toggle="modal" data-target="#modalAddEvent">Add Event</button>*@
+            <a href="@Url.Action("Add", "Home")" id="Add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;Create New</a>
             @using (Html.BeginForm("Index", "Home", FormMethod.Get))
             {
                 <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
@@ -18,85 +19,81 @@
 </div>
 
 <br />
-<div class="row" id="row-events">
-    @foreach (var item in Model)
-    {
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-            <div class="card h-100">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6 pull-left">
-                            <h5>@item.Date</h5>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <button class="btn btn-sm btn-success btnEdit"><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-sm btn-danger btnRemove"><i class="fa fa-remove"></i></button>
-                            <button class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
+
+<div id="div-record">
+    <div class="row" id="row-events">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-sm-6 portfolio-item">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6 pull-left">
+                                <h5>@item.Date</h5>
+                            </div>
+                            <div class="col-md-6 text-right">
+
+                                <a href="@Url.Action("Edit", "Home", new { id = item.Id })" class="editDialog" id="btnEdit">
+                                    <i class="fa fa-pencil-square-o"></i>
+                                </a>
+                                @Ajax.ActionLink("Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "fa fa-trash-o" })
+
+                                <button class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img class="card-img-top" src="@Url.Content(item.Image)" alt="" width="200" height="300"></a>
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <a href="#">@item.Name</a>
-                    </h4>
-                    <p class="card-text">@item.Description</p>
-                </div>
-                <div class="card-footer">
-                    <div class="row ">
-                        <div class="col-md-6">
-                            <h4>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </h4>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-success btn-block">Buy</button>
+                    <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img class="card-img-top" src="@Url.Content(item.Image)" alt="" width="200" height="300"></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#">@item.Name</a>
+                        </h4>
+                        <p class="card-text">@item.Description</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <h4>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success btn-block">Buy</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+    <!-- /.row -->
 </div>
-<!-- /.row -->
 
-<!-- Modal Add Event -->
-<div class="modal fade" id="modalAddEvent" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="AddModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
-            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-            {
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modalLabel">Add New Event</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image:</label>
-                        <input type="text" class="form-control" id="image">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date:</label>
-                        <input type="date" class="form-control" id="date">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <input type="text" class="form-control" id="description">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
-                </div>
-            }
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">New Event</h4>
+            </div>
+            <div class="divForAdd">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="EditModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Update Event</h4>
+            </div>
+            <div class="divForUpdate">
+            </div>
         </div>
     </div>
 </div>
@@ -104,7 +101,7 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            if(@ViewBag.IsAdmin == "1"){
+            @*if(@ViewBag.IsAdmin == "1"){
                 $('#btnAddEvent').show();
                 $('.btnEdit').show();
                 $('.btnRemove').show();
@@ -112,7 +109,28 @@
                 $('#btnAddEvent').hide();
                 $('.btnEdit').hide();
                 $('.btnRemove').hide();
-            }
+            }*@
+
+
+            $('#Add').click(function (event) {
+                event.preventDefault();
+                $.get(this.href, function (response) {
+                    $('.divForAdd').html(response);
+                });
+                $('#AddModel').modal({
+                    backdrop: 'static',
+                }, 'show');
+            });
+            $('.editDialog').click(function (event) {
+                event.preventDefault();
+                $.get(this.href, function (response) {
+                    $('.divForUpdate').html(response);
+                });
+                $('#EditModel').modal({
+                    backdrop: 'static',
+                }, 'show');
+            });
         });
     </script>
 }
+

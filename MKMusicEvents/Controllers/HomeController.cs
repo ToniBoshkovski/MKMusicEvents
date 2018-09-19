@@ -20,17 +20,46 @@ namespace MKMusicEvents.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Index(Event model)
+        public ActionResult Add()
         {
-            return View();
+            return PartialView();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Add(Event model)
         {
-            ViewBag.Message = "Your application description page.";
+            if (ModelState.IsValid)
+            {
 
-            return View();
+                db.Events.Add(model);
+                db.SaveChanges();
+            }
+            return View("Index", db.Events.ToList());
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return PartialView(db.Events.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Event model, int id)
+        {
+            if (ModelState.IsValid)
+            {
+
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return View("Index", db.Events.ToList());
+        }
+
+        public ActionResult Delete(int id)
+        {
+
+            db.Events.Remove(db.Events.Find(id));
+            db.SaveChanges();
+            return View("Index", db.Events.ToList());
         }
 
         public ActionResult Contact()
