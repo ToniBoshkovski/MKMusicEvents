@@ -34,7 +34,7 @@ namespace MKMusicEvents.Controllers
                 db.Events.Add(model);
                 db.SaveChanges();
             }
-            return View("Index", db.Events.ToList());
+            return RedirectToAction("Index", db.Events.ToList());
         }
 
         public ActionResult Edit(int id)
@@ -51,7 +51,7 @@ namespace MKMusicEvents.Controllers
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
-            return View("Index", db.Events.ToList());
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Delete(int id)
@@ -59,7 +59,7 @@ namespace MKMusicEvents.Controllers
 
             db.Events.Remove(db.Events.Find(id));
             db.SaveChanges();
-            return View("Index", db.Events.ToList());
+            return RedirectToAction("Index", db.Events.ToList());
         }
 
         public ActionResult Contact()

@@ -6,7 +6,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Name)
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", style = "width: 100%" })
             </div>
         </div>
         <div class="row form-group">
@@ -24,7 +24,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Description)
-                @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3" })
             </div>
         </div>
     </div>
