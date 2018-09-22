@@ -202,6 +202,7 @@
     <Content Include="Content\img\brit-floyd.jpg" />
     <Content Include="Content\img\bryan-ferry.jpg" />
     <Content Include="Content\img\jethro-tull.jpg" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\texas.jpg" />
     <Content Include="Content\img\tom-odell.jpg" />
     <Content Include="Content\MKMusicEvents.css" />
