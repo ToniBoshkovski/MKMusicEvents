@@ -1,3 +1,5 @@
 ﻿$(document).ready(function () {
-    $('[data-toggle="popover"]').popover();
+    $('#userPopover').popover({
+        content: "<li><a href='/Manage/Index'>Changeasd Password</a></li></br><li><a href='/Home/Favorites'>Favorites</a></li></br><li><a href='/Home/MyTickets'>My Tickets</a></li>"
+    });
 });

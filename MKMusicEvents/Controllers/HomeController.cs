@@ -79,6 +79,16 @@ namespace MKMusicEvents.Controllers
             return View(model);
         }
 
+        public ActionResult Favorites()
+        {
+            return View();
+        }
+
+        public ActionResult MyTickets()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (db != null)
