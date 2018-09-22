@@ -67,7 +67,7 @@ export interface Modifiers {
     y?: 'left' | 'right'
   };
 
-  [name: string]: (BaseModifier & Record<string, any>) | undefined;
+  //[name: string]: (BaseModifier & Record<string, any>) | undefined;
 }
 
 export interface Offset {
