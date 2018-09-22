@@ -1,12 +1,149 @@
 ﻿body {
     padding-bottom: 0px;
-    margin-top: 30px;
+    background-color: #F3E9DC;
+    padding-top: 0px;
 }
 
-.popover-body li{
+.fixed-top {
+    position: inherit;
+}
+
+.form-horizontal hr {
+    background-color: #C57F1E;
+}
+
+.form-horizontal h4 {
+    color: #2F3847; 
+}
+
+a{
+    color: #2F3847;
+}
+
+label {
+    color: #2F3847;
+}
+
+.event-image {
+    width: 100%;
+    height: auto;
+}
+
+.event-title {
+    color: #C57F1E;
+}
+
+.event-description {
+    color: #2F3847;
+}
+
+.collapse:not(.show) {
+    display: flex !important;
+    flex-basis: auto;
+}
+
+.form-control.pull-right {
+    width: 300px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0;
+    background-color: #F3E9DC;
+}
+
+.fa-search:before {
+    color: #2F3847;
+}
+
+.body-content {
+    padding: 15px;
+}
+
+.bg-dark {
+    background-color: #2F3847 !important;
+}
+
+.logo {
+    height: 60px;
+}
+
+.navbar-right {
+    display: inherit;
+}
+
+.popover-body li {
     list-style-type: none;
 }
 
 .popover-body li a {
     text-decoration: none;
+}
+
+.card {
+    background-color: #2F3847;
+    color: #C57F1E;
+}
+
+.card-body {
+    height: 210px;
+    overflow: hidden;
+    background-color: #364156;
+}
+
+.card-title a {
+    text-decoration: none;
+    color: #FCD7AD;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #F3E9DC;
+}
+
+.btn-buy, .btn-buy:hover, .btn-buy:active {
+    color: #fff;
+    background-color: #08605F;
+    border-color: #08605F;
+}
+
+.btn-edit, .btn-edit:hover, .btn-edit:active {
+    color: #fff;
+    background-color: #5B4B49;
+    border-color: #5B4B49;
+}
+
+.btn-delete, .btn-delete:hover, .btn-delete:active {
+    color: #fff;
+    background-color: #9B1D20;
+    border-color: #9B1D20;
+}
+
+.btn-create, .btn-create:hover, .btn-create:active, .btn-save, .btn-save:hover, .btn-save:active {
+    color: #fff;
+    background-color: #C57F1E;
+    border-color: #C57F1E;
+}
+
+.btn-favorite, .btn-favorite:hover, .btn-favorite:active {
+    color: #fff;
+    background-color: #C57F1E;
+    border-color: #C57F1E;
+}
+
+.modal-content {
+    background-color: #F3E9DC;
+}
+
+.text-footer {
+    color: #F3E9DC;
+}
+
+@media only screen and (max-width: 767px) {
+    .form-control.pull-right{
+        width: 150px;
+    }
 }

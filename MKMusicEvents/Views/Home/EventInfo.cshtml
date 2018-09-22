@@ -7,14 +7,19 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <img src="@Url.Content(Model.Image)" />
+            <img class="event-image" src="@Url.Content(Model.Image)" />
         </div>
         <div class="col-md-6">
-            <h1>@Model.Name</h1>
+            <h1 class="event-title">@Model.Name</h1>
 
-            <p>@Model.Description</p>
+            <p class="event-description">@Model.Description</p>
         </div>
     </div>
 </div>
 <br />
 
+<script>
+    $(document).ready(function () {
+        $('.bottom').removeClass('bottom').addClass('fixed-bottom');
+    });
+</script>

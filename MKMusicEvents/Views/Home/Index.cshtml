@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <a href="@Url.Action("Add", "Home")" id="Add" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-plus"></i>&nbsp;Create New</a>
+            <a href="@Url.Action("Add", "Home")" id="Add" class="btn btn-lg btn-create"><i class="glyphicon glyphicon-plus"></i>&nbsp;Create New</a>
         </div>
     </div>
 </div>
@@ -27,11 +27,11 @@
                             </div>
                             <div class="col-md-6 text-right">
 
-                                <a href="@Url.Action("Edit", "Home", new { id = item.Id })" class="btn btn-sm btn-success editDialog btnEdit">
+                                <a href="@Url.Action("Edit", "Home", new { id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
-                                @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-danger fa fa-remove btnRemove" })
-                                <button class="btn btn-sm btn-info"><i class="fa fa-heart"></i></button>
+                                @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
+                                <button class="btn btn-sm btn-favorite"><i class="fa fa-heart"></i></button>
                             </div>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                                 </h4>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn btn-success btn-block" @*data-toggle="popover" title="Buy Tickets" data-content="Some content inside the popover" data-placement="top"*@>Buy</button>
+                                <button class="btn btn-block btn-buy" @*data-toggle="popover" title="Buy Tickets" data-content="Some content inside the popover" data-placement="top"*@>Buy</button>
                             </div>
                         </div>
                     </div>
