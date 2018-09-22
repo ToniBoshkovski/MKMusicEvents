@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -19,16 +19,15 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Content/img/logo.png" class="logo" /></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-            {
-                <button type="submit" class="btn btn-default pull-right"><i class="fa fa-search"></i></button>
-                @Html.TextBox("search", null, new { @class = "form-control pull-right", style = "margin-bottom: 20px; width: 300px", placeholder = "Search..." })
-            }
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img src="~/Content/img/logo_image.png" class="logo" /></a>
+                <span class="search-box ml-auto">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-default pull-right search-icon"><i class="fa fa-search"></i></button>
+                        @Html.TextBox("search", null, new { @class = "form-control pull-right", placeholder = "Search..." })
+                    }
+                </span>
                 <ul class="navbar-nav ml-auto">
                     @Html.Partial("_LoginPartial")
                 </ul>
@@ -40,9 +39,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer id="footer" class="py-5 bg-dark bottom">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; <b>131209</b><b> 131156 </b><b> 131084 </b>MK Music Events Website 2018</p>
+            <p class="m-0 text-center text-footer">Copyright &copy; <b>131209</b><b> 131156 </b><b> 131084 </b>MK Music Events Website 2018</p>
         </div>
         <!-- /.container -->
     </footer>
