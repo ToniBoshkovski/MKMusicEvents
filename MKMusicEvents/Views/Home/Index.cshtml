@@ -30,8 +30,10 @@
                                 <a href="@Url.Action("Edit", "Home", new { id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
+
                                 @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
-                                <button class="btn btn-sm btn-favorite"><i class="fa fa-heart"></i></button>
+
+                                <button class="btn btn-sm btn-favorite" data-id="@item.Id"><i class="fa fa-heart"></i></button>
                             </div>
                         </div>
                     </div>
@@ -126,6 +128,30 @@
                 }, 'show');
             });
         });
+
+        //$(".btn-favorite").click(function () {
+        //    var userid = $(this).data("id");
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "/Home/AjaxPostCall",
+        //        data: JSON.stringify(userid),
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json",
+        //        success: function (response) {
+        //            if (response != null) {
+        //                alert("Name : " + response.Name + ", Designation : " + response.Designation + ", Location :" + response.Location);
+        //            } else {
+        //                alert("Something went wrong");
+        //            }
+        //        },
+        //        failure: function (response) {
+        //            alert(response.responseText);
+        //        },
+        //        error: function (response) {
+        //            alert(response.responseText);
+        //        }
+        //    });
+        //});  
     </script>
 }
 

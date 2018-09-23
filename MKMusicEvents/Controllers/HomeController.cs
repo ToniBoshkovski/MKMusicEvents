@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using MKMusicEvents.Models;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,24 @@ namespace MKMusicEvents.Controllers
             }
             return View(model);
         }
+
+        //[HttpPost]
+        //public JsonResult AjaxPostCall(int id)
+        //{
+        //    Favorites model = new Favorites();
+        //    model.UserId = int.Parse(User.Identity.GetUserId());
+        //    model.EventId = id;
+        //    db.Favorites.Add(model);
+        //    db.SaveChanges();
+        //    JsonResponse obj = new JsonResponse();
+        //    return Json(obj);
+        //}
+
+        //public class JsonResponse
+        //{
+        //    public int ErrorCode { get; set; }
+        //    public string Message { get; set; }
+        //}
 
         public ActionResult Favorites()
         {
