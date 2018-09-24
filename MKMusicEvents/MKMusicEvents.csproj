@@ -182,13 +182,21 @@
     <Compile Include="Migrations\201809171401006_AddIsAdmin.Designer.cs">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809240829382_AddedFavorites.cs" />
-    <Compile Include="Migrations\201809240829382_AddedFavorites.Designer.cs">
-      <DependentUpon>201809240829382_AddedFavorites.cs</DependentUpon>
+    <Compile Include="Migrations\201809241804585_AddedFavorites.cs" />
+    <Compile Include="Migrations\201809241804585_AddedFavorites.Designer.cs">
+      <DependentUpon>201809241804585_AddedFavorites.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809241145440_UpdateFavoritesUserId.cs" />
-    <Compile Include="Migrations\201809241145440_UpdateFavoritesUserId.Designer.cs">
-      <DependentUpon>201809241145440_UpdateFavoritesUserId.cs</DependentUpon>
+    <Compile Include="Migrations\201809241935575_AddedImageFile.cs" />
+    <Compile Include="Migrations\201809241935575_AddedImageFile.Designer.cs">
+      <DependentUpon>201809241935575_AddedImageFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241950069_UpdateEvent.cs" />
+    <Compile Include="Migrations\201809241950069_UpdateEvent.Designer.cs">
+      <DependentUpon>201809241950069_UpdateEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809242008472_ModelDataAnnotations.cs" />
+    <Compile Include="Migrations\201809242008472_ModelDataAnnotations.Designer.cs">
+      <DependentUpon>201809242008472_ModelDataAnnotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -333,11 +341,17 @@
     <EmbeddedResource Include="Migrations\201809171401006_AddIsAdmin.resx">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809240829382_AddedFavorites.resx">
-      <DependentUpon>201809240829382_AddedFavorites.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809241804585_AddedFavorites.resx">
+      <DependentUpon>201809241804585_AddedFavorites.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809241145440_UpdateFavoritesUserId.resx">
-      <DependentUpon>201809241145440_UpdateFavoritesUserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809241935575_AddedImageFile.resx">
+      <DependentUpon>201809241935575_AddedImageFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241950069_UpdateEvent.resx">
+      <DependentUpon>201809241950069_UpdateEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809242008472_ModelDataAnnotations.resx">
+      <DependentUpon>201809242008472_ModelDataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

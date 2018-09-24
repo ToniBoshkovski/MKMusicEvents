@@ -13,11 +13,13 @@ namespace MKMusicEvents.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-
         public ActionResult Index(string search)
         {
-            ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
-            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null );
+            if(User.Identity.Name != null)
+            {
+                ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
+            }
+            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null);
             return View(model);
         }
 
@@ -31,7 +33,6 @@ namespace MKMusicEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Events.Add(model);
                 db.SaveChanges();
             }
@@ -48,7 +49,6 @@ namespace MKMusicEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
@@ -57,7 +57,6 @@ namespace MKMusicEvents.Controllers
 
         public ActionResult Delete(int id)
         {
-
             db.Events.Remove(db.Events.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index", db.Events.ToList());
@@ -127,11 +126,6 @@ namespace MKMusicEvents.Controllers
         }
 
         public ActionResult Favorites()
-        {
-            return View();
-        }
-
-        public ActionResult MyTickets()
         {
             return View();
         }

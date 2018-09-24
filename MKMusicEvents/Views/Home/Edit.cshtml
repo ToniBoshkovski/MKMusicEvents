@@ -8,24 +8,28 @@
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Name)
                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Image)
                 @Html.TextBoxFor(m => m.Image, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Image, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Date)
                 @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Date, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
         <div class="row form-group">
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Description)
                 @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3" })
+                @Html.ValidationMessageFor(m => m.Description, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
     </div>

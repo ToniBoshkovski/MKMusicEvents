@@ -27,13 +27,13 @@
                             </div>
                             <div class="col-md-6 text-right">
 
-                                <a href="@Url.Action("Edit", "Home", new { id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
+                                <a href="@Url.Action("Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
 
                                 @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
 
-                                <button class="btn btn-sm btn-favorite" data-id="@item.Id"><i class="fa fa-heart heart"></i></button>
+                                <button class="btn btn-sm btn-favorite" data-id="@item.Id"><i class="fa fa-heart"></i></button>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">New Event</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                
+
             </div>
             <div class="divForAdd">
             </div>
@@ -87,7 +87,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Update Event</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                
+
             </div>
             <div class="divForUpdate">
             </div>
@@ -138,10 +138,10 @@
                 dataType: "json",
                 success: function (response) {
                     if(response.ErrorCode == 0) {
-                        $(".heart").css("color", "red");
+                        $(".btn-favorite").css("color", "red");
                     }
                     else {
-                        $(".heart").css("color", "");
+                        $(".btnFavorite").css("color", "");
                     }
                 },
                 failure: function (response) {
@@ -151,7 +151,7 @@
                     alert(response.Message);
                 }
             });
-        });  
+        });
     </script>
 }
 
