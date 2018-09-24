@@ -80,23 +80,51 @@ namespace MKMusicEvents.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public JsonResult AjaxPostCall(int id)
-        //{
-        //    Favorites model = new Favorites();
-        //    model.UserId = int.Parse(User.Identity.GetUserId());
-        //    model.EventId = id;
-        //    db.Favorites.Add(model);
-        //    db.SaveChanges();
-        //    JsonResponse obj = new JsonResponse();
-        //    return Json(obj);
-        //}
+        [HttpPost]
+        public JsonResult AddToFavorites(int id)
+        {
+            try
+            {
+                JsonResponse result = new JsonResponse();
+                Favorites model = new Favorites();
+                if (User.Identity.Name != "")
+                {
+                    result.ErrorCode = 0;
+                    result.Message = "Successufully added event to favorites.";
+                    model.UserId = User.Identity.GetUserId();
+                    model.EventId = id;
+                    if (!db.Favorites.Any(m => m.UserId == model.UserId && m.EventId == id))
+                    {
+                        db.Favorites.Add(model);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        int favoriteId = db.Favorites.Where(m => m.UserId == model.UserId && m.EventId == id).Select(m => m.Id).FirstOrDefault();
+                        db.Favorites.Remove(db.Favorites.Find(favoriteId));
+                        db.SaveChanges();
+                        result.ErrorCode = 100;
+                    }
+                }
+                else
+                {
+                    result.ErrorCode = 100;
+                    result.Message = "You must log in first";
+                }
 
-        //public class JsonResponse
-        //{
-        //    public int ErrorCode { get; set; }
-        //    public string Message { get; set; }
-        //}
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        public class JsonResponse
+        {
+            public int ErrorCode { get; set; }
+            public string Message { get; set; }
+        }
 
         public ActionResult Favorites()
         {

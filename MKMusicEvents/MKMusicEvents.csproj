@@ -182,9 +182,13 @@
     <Compile Include="Migrations\201809171401006_AddIsAdmin.Designer.cs">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809230957364_AddedFavorites.cs" />
-    <Compile Include="Migrations\201809230957364_AddedFavorites.Designer.cs">
-      <DependentUpon>201809230957364_AddedFavorites.cs</DependentUpon>
+    <Compile Include="Migrations\201809240829382_AddedFavorites.cs" />
+    <Compile Include="Migrations\201809240829382_AddedFavorites.Designer.cs">
+      <DependentUpon>201809240829382_AddedFavorites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241145440_UpdateFavoritesUserId.cs" />
+    <Compile Include="Migrations\201809241145440_UpdateFavoritesUserId.Designer.cs">
+      <DependentUpon>201809241145440_UpdateFavoritesUserId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -329,8 +333,11 @@
     <EmbeddedResource Include="Migrations\201809171401006_AddIsAdmin.resx">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809230957364_AddedFavorites.resx">
-      <DependentUpon>201809230957364_AddedFavorites.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809240829382_AddedFavorites.resx">
+      <DependentUpon>201809240829382_AddedFavorites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241145440_UpdateFavoritesUserId.resx">
+      <DependentUpon>201809241145440_UpdateFavoritesUserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
