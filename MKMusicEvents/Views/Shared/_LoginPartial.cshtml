@@ -1,18 +1,25 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-        @Html.AntiForgeryToken()
+    <div class="dropdown">
+        <button onclick="ddlUser()" class="dropbtn">@User.Identity.GetUserName()</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a href="/Manage/ChangePassword">Change Password</a>
+            <a href="/Home/Favorites">About</a>
+            <a href="/Home/MyTickets">Contact</a>
 
-        <li class="nav-item">
-            <a id="userPopover" href="#" class="nav-link" data-toggle="popover" data-html="true" data-placement="bottom" >@User.Identity.GetUserName()</a>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a></li>
-    }
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <a href="javascript:document.getElementById('logoutForm').submit()">Sign Out</a>
+            }
+        </div>
+    </div>
+    
 }
 else
 {
     <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })</li>
-    <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link"})</li>
+    <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })</li>
 }
