@@ -1,5 +1,29 @@
-﻿@{
+﻿@model IEnumerable<MKMusicEvents.Models.Event>
+
+@{
     ViewBag.Title = "Favorites";
+}
+
+@if (Model.Count() == 0)
+{
+    <h2>There are no favorite events.</h2>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <div class="row" style="height: 200px">
+            <div class="col-md-3">
+                <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img src="@Url.Content(@item.Image)" style="width: 200px; height: 200px" /></a>
+            </div>
+            <div class="col-md-9">
+                <h3>@item.Name</h3>
+                <p>@item.Description</p>
+                <h4>@item.Date</h4>
+            </div>
+        </div>
+        <hr />
+    }
 }
 
 <script>

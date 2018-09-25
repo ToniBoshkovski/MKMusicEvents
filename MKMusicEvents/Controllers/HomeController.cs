@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MKMusicEvents.Models;
+using MKMusicEvents.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,20 @@ namespace MKMusicEvents.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
-
         public ActionResult Index(string search)
         {
-            ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
-            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null );
-            return View(model);
+            if(User.Identity.Name != null)
+            {
+                ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
+            }
+            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null).ToList();
+            var viewModel = new IsFavoriteViewModel 
+            { 
+                Event = model,
+                IsFavorite = false
+            };
+            
+            return View(viewModel);
         }
 
         public ActionResult Add()
@@ -31,7 +40,6 @@ namespace MKMusicEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Events.Add(model);
                 db.SaveChanges();
             }
@@ -48,7 +56,6 @@ namespace MKMusicEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
             }
@@ -57,7 +64,6 @@ namespace MKMusicEvents.Controllers
 
         public ActionResult Delete(int id)
         {
-
             db.Events.Remove(db.Events.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index", db.Events.ToList());
@@ -80,32 +86,59 @@ namespace MKMusicEvents.Controllers
             return View(model);
         }
 
-        //[HttpPost]
-        //public JsonResult AjaxPostCall(int id)
-        //{
-        //    Favorites model = new Favorites();
-        //    model.UserId = int.Parse(User.Identity.GetUserId());
-        //    model.EventId = id;
-        //    db.Favorites.Add(model);
-        //    db.SaveChanges();
-        //    JsonResponse obj = new JsonResponse();
-        //    return Json(obj);
-        //}
+        [HttpPost]
+        public JsonResult AddToFavorites(int id)
+        {
+            try
+            {
+                JsonResponse result = new JsonResponse();
+                Favorites model = new Favorites();
+                if (User.Identity.Name != "")
+                {
+                    model.UserId = User.Identity.GetUserId();
+                    model.EventId = id;
+                    if (!db.Favorites.Any(m => m.UserId == model.UserId && m.EventId == id))
+                    {
+                        db.Favorites.Add(model);
+                        db.SaveChanges();
+                        result.ErrorCode = 0;
+                        result.Message = "Successufully added event to favorites.";
+                    }
+                    else
+                    {
+                        int favoriteId = db.Favorites.Where(m => m.UserId == model.UserId && m.EventId == id).Select(m => m.Id).FirstOrDefault();
+                        db.Favorites.Remove(db.Favorites.Find(favoriteId));
+                        db.SaveChanges();
+                        result.ErrorCode = 100;
+                    }
+                }
+                else
+                {
+                    result.ErrorCode = 200;
+                    result.Message = "You must log in first";
+                }
 
-        //public class JsonResponse
-        //{
-        //    public int ErrorCode { get; set; }
-        //    public string Message { get; set; }
-        //}
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        public class JsonResponse
+        {
+            public int ErrorCode { get; set; }
+            public string Message { get; set; }
+        }
 
         public ActionResult Favorites()
         {
-            return View();
-        }
-
-        public ActionResult MyTickets()
-        {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var model = from e in db.Events.ToList()
+                            join f in db.Favorites.Where(f => f.UserId == userId).ToList() on e.Id equals f.EventId
+                            select e;
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)
