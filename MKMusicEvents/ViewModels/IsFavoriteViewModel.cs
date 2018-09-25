@@ -9,6 +9,6 @@ namespace MKMusicEvents.ViewModels
     public class IsFavoriteViewModel
     {
         public List<Event> Event { get; set; }
-        public bool isFavorite { get; set; }
+        public bool IsFavorite { get; set; }
     }
 }

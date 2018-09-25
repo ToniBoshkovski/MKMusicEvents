@@ -24,7 +24,7 @@ namespace MKMusicEvents.Controllers
             var viewModel = new IsFavoriteViewModel 
             { 
                 Event = model,
-                isFavorite = false
+                IsFavorite = false
             };
             
             return View(viewModel);
@@ -135,10 +135,9 @@ namespace MKMusicEvents.Controllers
         public ActionResult Favorites()
         {
             var userId = User.Identity.GetUserId();
-            //var model = db.Events.Where(m => m.Id == db.Favorites.Where(x => x.UserId == userId).Select(x => x.EventId).To);
-            var model = (from e in db.Events
-                         join f in db.Favorites.Where(m => m.UserId == userId) on e.Id equals f.EventId
-                         select new { e, f });
+            var model = from e in db.Events.ToList()
+                            join f in db.Favorites.Where(f => f.UserId == userId).ToList() on e.Id equals f.EventId
+                            select e;
             return View(model);
         }
 

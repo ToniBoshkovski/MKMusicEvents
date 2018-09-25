@@ -182,10 +182,6 @@
     <Compile Include="Migrations\201809171401006_AddIsAdmin.Designer.cs">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809250730595_AddedIsFavoriteViewModel.cs" />
-    <Compile Include="Migrations\201809250730595_AddedIsFavoriteViewModel.Designer.cs">
-      <DependentUpon>201809250730595_AddedIsFavoriteViewModel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Event.cs" />
@@ -206,7 +202,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\2cellos.jpg" />
     <Content Include="Content\img\brit-floyd.jpg" />
-    <Content Include="Content\img\bryan-ferry.jpg" />
     <Content Include="Content\img\jethro-tull.jpg" />
     <Content Include="Content\img\logo_image.png" />
     <Content Include="Content\img\maestro.png" />
@@ -333,9 +328,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809171401006_AddIsAdmin.resx">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809250730595_AddedIsFavoriteViewModel.resx">
-      <DependentUpon>201809250730595_AddedIsFavoriteViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
