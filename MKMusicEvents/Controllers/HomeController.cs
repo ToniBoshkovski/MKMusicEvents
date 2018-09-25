@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MKMusicEvents.Models;
+using MKMusicEvents.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,14 @@ namespace MKMusicEvents.Controllers
             {
                 ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
             }
-            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null);
-            return View(model);
+            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null).ToList();
+            var viewModel = new IsFavoriteViewModel 
+            { 
+                Event = model,
+                isFavorite = false
+            };
+            
+            return View(viewModel);
         }
 
         public ActionResult Add()
@@ -88,14 +95,14 @@ namespace MKMusicEvents.Controllers
                 Favorites model = new Favorites();
                 if (User.Identity.Name != "")
                 {
-                    result.ErrorCode = 0;
-                    result.Message = "Successufully added event to favorites.";
                     model.UserId = User.Identity.GetUserId();
                     model.EventId = id;
                     if (!db.Favorites.Any(m => m.UserId == model.UserId && m.EventId == id))
                     {
                         db.Favorites.Add(model);
                         db.SaveChanges();
+                        result.ErrorCode = 0;
+                        result.Message = "Successufully added event to favorites.";
                     }
                     else
                     {
@@ -107,7 +114,7 @@ namespace MKMusicEvents.Controllers
                 }
                 else
                 {
-                    result.ErrorCode = 100;
+                    result.ErrorCode = 200;
                     result.Message = "You must log in first";
                 }
 
@@ -127,7 +134,12 @@ namespace MKMusicEvents.Controllers
 
         public ActionResult Favorites()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            //var model = db.Events.Where(m => m.Id == db.Favorites.Where(x => x.UserId == userId).Select(x => x.EventId).To);
+            var model = (from e in db.Events
+                         join f in db.Favorites.Where(m => m.UserId == userId) on e.Id equals f.EventId
+                         select new { e, f });
+            return View(model);
         }
 
         protected override void Dispose(bool disposing)

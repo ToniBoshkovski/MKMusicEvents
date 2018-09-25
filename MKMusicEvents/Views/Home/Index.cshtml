@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MKMusicEvents.Models.Event>
+﻿@model MKMusicEvents.ViewModels.IsFavoriteViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -16,52 +16,59 @@
 
 <div id="div-record">
     <div class="row" id="row-events">
-        @foreach (var item in Model)
+        @if (Model.Event.Count == 0)
         {
-            <div class="col-lg-4 col-sm-6 portfolio-item">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-6 pull-left">
-                                <h5>@item.Date</h5>
-                            </div>
-                            <div class="col-md-6 text-right">
+            <h2>There are no events.</h2>
+        }
+        else
+        {
+            foreach (var item in Model.Event)
+            {
+                <div class="col-lg-4 col-sm-6 portfolio-item">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-6 pull-left">
+                                    <h5>@item.Date</h5>
+                                </div>
+                                <div class="col-md-6 text-right">
 
-                                <a href="@Url.Action("Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
-                                    <i class="fa fa-pencil-square-o"></i>
-                                </a>
+                                    <a href="@Url.Action("Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
+                                        <i class="fa fa-pencil-square-o"></i>
+                                    </a>
 
-                                @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
+                                    @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
 
-                                <button class="btn btn-sm btn-favorite" data-id="@item.Id"><i class="fa fa-heart"></i></button>
+                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favoriteid="@Model.isFavorite"><i class="fa fa-heart"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img class="card-img-top" src="@Url.Content(item.Image)" alt="" width="200" height="300"></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="#">@item.Name</a>
-                        </h4>
-                        <p class="card-text">@item.Description</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row ">
-                            <div class="col-md-6">
-                                <h4>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </h4>
-                            </div>
-                            <div class="col-md-6">
-                                <button class="btn btn-block btn-buy" @*data-toggle="popover" title="Buy Tickets" data-content="Some content inside the popover" data-placement="top"*@>Buy</button>
+                        <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img class="card-img-top" src="@Url.Content(item.Image)" alt="" width="200" height="300"></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#">@item.Name</a>
+                            </h4>
+                            <p class="card-text">@item.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <h4>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-block btn-buy">Buy</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </div>
     <!-- /.row -->
@@ -95,9 +102,96 @@
     </div>
 </div>
 
+<div class="modal fade" id="BuyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Buy Event</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="divForBuy">
+                <div class="modal-body">
+                    <form id="formBuy">
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <input type="radio" name="rdbGroup" id="rdb1"/>
+                                <img src="~/Content/img/visa.png" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="rdbGroup" id="rdb2" />
+                                <img src="~/Content/img/maestro.png" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="rdbGroup" id="rdb3" />
+                                <img src="~/Content/img/mastercard.png" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="radio" name="rdbGroup" id="rdb4" />
+                                <img src="~/Content/img/paypal.png" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="cardNum">Card Number</label>
+                                <input type="text" class="form-control" id="cardNum">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="expDate">Expiry Date</label>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" placeholder="MM"/>
+                                    </div>
+                                    <div class="col-md-2">
+                                        /
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" class="form-control" placeholder="YY" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="secCode">Security Code</label>
+                                <input type="text" class="form-control" id="secCode">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label for="cardName">Cardholder Name</label>
+                                <input type="text" class="form-control" id="cardName" placeholder="First Name">
+                            </div>
+                            <div class="col-md-6">
+                                <label style="visibility: hidden">1</label>
+                                <input type="text" class="form-control" placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="checkbox"/> Save this card
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <label for="qty">Quantity</label>
+                                <input type="number" id="qty" class="form-control"/> 
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close</button>
+                            <button type="button" class="btn btn-save" data-dismiss="modal"><i class="fa fa-check"></i>&nbsp;Done</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts {
     <script>
         $(document).ready(function () {
+
             if(@ViewBag.IsAdmin == "1"){
                 $('#Add').show();
                 $('.btnEdit').show();
@@ -127,10 +221,17 @@
                     backdrop: 'static',
                 }, 'show');
             });
+            $('.btn-buy').click(function (event) {
+                $('#formBuy').trigger('reset');
+                $('#BuyModal').modal('show');
+            });
+
+
         });
 
         $(".btn-favorite").click(function () {
             var eventId = parseInt($(this).data("id"));
+            var isFavorite = $(this).data("favoriteid");
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/Home/AddToFavorites",
@@ -138,10 +239,13 @@
                 dataType: "json",
                 success: function (response) {
                     if(response.ErrorCode == 0) {
-                        $(".btn-favorite").css("color", "red");
+                    
                     }
-                    else {
-                        $(".btnFavorite").css("color", "");
+                    else if(response.ErrorCode == 100){
+                        
+                    }
+                    else{
+                        alert(response.Message);
                     }
                 },
                 failure: function (response) {

@@ -182,21 +182,9 @@
     <Compile Include="Migrations\201809171401006_AddIsAdmin.Designer.cs">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809241804585_AddedFavorites.cs" />
-    <Compile Include="Migrations\201809241804585_AddedFavorites.Designer.cs">
-      <DependentUpon>201809241804585_AddedFavorites.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809241935575_AddedImageFile.cs" />
-    <Compile Include="Migrations\201809241935575_AddedImageFile.Designer.cs">
-      <DependentUpon>201809241935575_AddedImageFile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809241950069_UpdateEvent.cs" />
-    <Compile Include="Migrations\201809241950069_UpdateEvent.Designer.cs">
-      <DependentUpon>201809241950069_UpdateEvent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809242008472_ModelDataAnnotations.cs" />
-    <Compile Include="Migrations\201809242008472_ModelDataAnnotations.Designer.cs">
-      <DependentUpon>201809242008472_ModelDataAnnotations.cs</DependentUpon>
+    <Compile Include="Migrations\201809250730595_AddedIsFavoriteViewModel.cs" />
+    <Compile Include="Migrations\201809250730595_AddedIsFavoriteViewModel.Designer.cs">
+      <DependentUpon>201809250730595_AddedIsFavoriteViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -206,6 +194,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\IsFavoriteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\3-col-portfolio.css" />
@@ -219,9 +208,13 @@
     <Content Include="Content\img\brit-floyd.jpg" />
     <Content Include="Content\img\bryan-ferry.jpg" />
     <Content Include="Content\img\jethro-tull.jpg" />
-    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\logo_image.png" />
+    <Content Include="Content\img\maestro.png" />
+    <Content Include="Content\img\mastercard.png" />
+    <Content Include="Content\img\paypal.png" />
     <Content Include="Content\img\texas.jpg" />
     <Content Include="Content\img\tom-odell.jpg" />
+    <Content Include="Content\img\visa.png" />
     <Content Include="Content\MKMusicEvents.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -341,17 +334,8 @@
     <EmbeddedResource Include="Migrations\201809171401006_AddIsAdmin.resx">
       <DependentUpon>201809171401006_AddIsAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809241804585_AddedFavorites.resx">
-      <DependentUpon>201809241804585_AddedFavorites.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809241935575_AddedImageFile.resx">
-      <DependentUpon>201809241935575_AddedImageFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809241950069_UpdateEvent.resx">
-      <DependentUpon>201809241950069_UpdateEvent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809242008472_ModelDataAnnotations.resx">
-      <DependentUpon>201809242008472_ModelDataAnnotations.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809250730595_AddedIsFavoriteViewModel.resx">
+      <DependentUpon>201809250730595_AddedIsFavoriteViewModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

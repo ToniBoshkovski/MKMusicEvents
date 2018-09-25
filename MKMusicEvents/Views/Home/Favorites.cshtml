@@ -1,6 +1,16 @@
-﻿@{
+﻿@model List<MKMusicEvents.Models.Event>
+
+@{
     ViewBag.Title = "Favorites";
 }
+
+@foreach (var item in Model)
+{
+    <h1>@item.Name</h1>
+    <p>@item.Date</p>
+    <p>@item.Description</p>
+}
+
 
 <script>
     $(document).ready(function () {
