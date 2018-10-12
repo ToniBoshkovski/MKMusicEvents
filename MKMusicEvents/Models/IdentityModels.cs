@@ -29,6 +29,7 @@ namespace MKMusicEvents.Models
 
         public DbSet<Event> Events { get; set; }
         public DbSet<Favorites> Favorites { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
 
         public static ApplicationDbContext Create()
         {

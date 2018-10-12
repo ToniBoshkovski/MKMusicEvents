@@ -191,46 +191,22 @@ label {
     display: block;
 }
 
-.rating {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateY(180deg);
+#rating {
+    
     display: flex;
+    font-size: 20px;
+    color: #FCD7AD;
 }
 
-.rating input {
-    display: none;
+.star {
+    margin-left: 5px;
+    color: #FCD7AD;
 }
 
-.rating label {
-    display: block;
-    cursor: pointer;
-    width: 30px;
+.star.hover, .star.selected {
+    color: #C57F1E;
 }
 
-    .rating label:before {
-        content: '\f005';
-        font-family: fontAwesome;
-        position: relative;
-        display: block;
-        font-size: 20px;
-        color: #FCD7AD;
-    }
-
-    .rating label:after {
-        content: '\f005';
-        font-family: fontAwesome;
-        position: absolute;
-        display: block;
-        font-size: 20px;
-        color: #C57F1E;
-        top: 0;
-        opacity: 0;
-        transition: .5s;
-        text-shadow: 0 2px 5px rgba(0,0,0,.5);
-    }
-
-    .rating label:hover:after, .rating label:hover ~ label:after, .rating input:checked ~ label:after {
-        opacity: 1;
-    }
+.btn-buy {
+    margin-top: 10px;
+}

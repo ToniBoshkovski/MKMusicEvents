@@ -26,7 +26,8 @@ namespace MKMusicEvents
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/3-col-portfolio.css"));
+                      "~/Content/3-col-portfolio.css",
+                      "~/Content/MKMusicEvents.css"));
         }
     }
 }

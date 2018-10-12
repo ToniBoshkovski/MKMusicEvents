@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group">
-            <a href="@Url.Action("Add", "Home")" id="Add" class="btn btn-lg btn-create"><i class="glyphicon glyphicon-plus"></i>&nbsp;Create New</a>
+            <a href="@Url.Action("_Add", "Home")" id="Add" class="btn btn-lg btn-create"><i class="glyphicon glyphicon-plus"></i>&nbsp;Create New</a>
         </div>
     </div>
 </div>
@@ -33,13 +33,13 @@
                                 </div>
                                 <div class="col-md-6 text-right">
 
-                                    <a href="@Url.Action("Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
+                                    <a href="@Url.Action("_Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
                                         <i class="fa fa-pencil-square-o"></i>
                                     </a>
 
                                     @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
 
-                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favoriteid="@Model.IsFavorite"><i class="fa fa-heart"></i></button>
+                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favorite-id="@Model.IsFavorite"><i class="fa fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -53,16 +53,25 @@
                         <div class="card-footer">
                             <div class="row ">
                                 <div class="col-md-6">
-                                    <div class="rating">
-                                        <input type="radio" name="star" id="star1" /><label for="star1-1"></label>
-                                        <input type="radio" name="star" id="star2" /><label for="star2-2"></label>
-                                        <input type="radio" name="star" id="star3" /><label for="star3-3"></label>
-                                        <input type="radio" name="star" id="star4" /><label for="star4-4"></label>
-                                        <input type="radio" name="star" id="star5" /><label for="star5-5"></label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p data-ratingGradeId="ratingGrade"><b></b></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="rating">
+                                                <i class="fa fa-star star" data-id="1" data-eventid="@item.Id"></i>
+                                                <i class="fa fa-star star" data-id="2" data-eventid="@item.Id"></i>
+                                                <i class="fa fa-star star" data-id="3" data-eventid="@item.Id"></i>
+                                                <i class="fa fa-star star" data-id="4" data-eventid="@item.Id"></i>
+                                                <i class="fa fa-star star" data-id="5" data-eventid="@item.Id"></i>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-block btn-buy">Buy</button>
+                                    <button class="btn btn-block btn-buy" data-id="@item.Id">Buy</button>
                                 </div>
                             </div>
                         </div>
@@ -212,6 +221,7 @@
                     backdrop: 'static',
                 }, 'show');
             });
+
             $('.editDialog').click(function (event) {
                 event.preventDefault();
                 $.get(this.href, function (response) {
@@ -221,6 +231,7 @@
                     backdrop: 'static',
                 }, 'show');
             });
+
             $('.btn-buy').click(function (event) {
                 $('#formBuy').trigger('reset');
                 $('#BuyModal').modal('show');
@@ -231,7 +242,8 @@
 
         $(".btn-favorite").click(function () {
             var eventId = parseInt($(this).data("id"));
-            var isFavorite = $(this).data("favoriteid");
+            var isFavorite = $(this);
+
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/Home/AddToFavorites",
@@ -239,10 +251,10 @@
                 dataType: "json",
                 success: function (response) {
                     if (response.ErrorCode == 0) {
-
+                        isFavorite.css("color", "red");
                     }
                     else if(response.ErrorCode == 100){
-                        
+                        isFavorite.css("color", "");
                     }
                     else{
                         alert(response.Message);
@@ -256,6 +268,57 @@
                 }
             });
         });
+
+        $('#rating .fa').mouseover( function(){
+            var onStar = parseInt($(this).data('id'), 10); 
+
+            $(this).parent().children('.fa').each(function(e){
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
+    
+        }).mouseout( function(){
+            $(this).parent().children('.fa').each(function(e){
+                $(this).removeClass('hover');
+            });
+        });
+
+
+        $('#rating .fa').click(function() {
+            var eventId = parseInt($(this).data("eventid"))
+            var onStar = parseInt($(this).data('id'), 10);
+            var stars = $(this).parent().children(".fa");
+            var rating = $(this).data('id');
+
+            for(i=0; i<stars.length; i++){
+                $(stars[i]).removeClass('selected');
+            }
+            for (i=0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Home/AddToRating",
+                data: {"id" : eventId, "rating" : rating},
+                dataType: "json",
+                success: function (response) {
+                    $('#ratingGrade').text("Rating: " + response.ResponseRatingGrade + "/5");
+                },
+                failure: function (response) {
+                    alert(response.Message);
+                },
+                error: function (response) {
+                    alert(response.Message);
+                }
+            });
+        });
+        
+
     </script>
 }
 

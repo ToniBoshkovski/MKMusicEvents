@@ -3,15 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>MK Music Events</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
-    <link rel="stylesheet" href="~/Content/MKMusicEvents.css" />
-
-    
 
 </head>
 <body>
@@ -47,11 +44,12 @@
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
-    
+
     <!--Path to Popper - it is for dropsdowns etc in bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 
     @Scripts.Render("~/bundles/bootstrap")
+
     @Scripts.Render("~/Scripts/MKMusicEvents.js")
     @RenderSection("scripts", required: false)
 

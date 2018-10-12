@@ -20,7 +20,7 @@ namespace MKMusicEvents.Controllers
             {
                 ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
             }
-            var model = db.Events.Where(m => m.Date.Contains(search) || m.Name.Contains(search) || search == null).ToList();
+            var model = db.Events.Where(/*m => m.Date.Contains(search) ||*/ m => m.Name.Contains(search) || search == null).ToList();
             var viewModel = new IsFavoriteViewModel 
             { 
                 Event = model,
@@ -30,13 +30,13 @@ namespace MKMusicEvents.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Add()
+        public ActionResult _Add()
         {
             return PartialView();
         }
 
         [HttpPost]
-        public ActionResult Add(Event model)
+        public ActionResult _Add(Event model)
         {
             if (ModelState.IsValid)
             {
@@ -46,13 +46,13 @@ namespace MKMusicEvents.Controllers
             return RedirectToAction("Index", db.Events.ToList());
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult _Edit(int id)
         {
             return PartialView(db.Events.Find(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(Event model, int id)
+        public ActionResult _Edit(Event model, int id)
         {
             if (ModelState.IsValid)
             {
@@ -139,6 +139,66 @@ namespace MKMusicEvents.Controllers
                             join f in db.Favorites.Where(f => f.UserId == userId).ToList() on e.Id equals f.EventId
                             select e;
             return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult AddToRating(int id, int rating)
+        {
+            try
+            {
+                JsonRatingResponse jsonResponse = new JsonRatingResponse();
+                Rating model = new Rating();
+                var userId = User.Identity.GetUserId();
+
+                if (User.Identity.Name != "")
+                {
+                    var exist = db.Ratings.Where(r => r.UserId == userId && r.EventId == id).FirstOrDefault();
+                    if (exist != null)
+                    {
+                        exist.RatingGrade = rating;
+                        db.SaveChanges();
+                        jsonResponse.ResponseCode = 100;
+                    }
+                    else
+                    {
+                        model.UserId = userId;
+                        model.EventId = id;
+                        model.RatingGrade = rating;
+                        db.Ratings.Add(model);
+                        db.SaveChanges();
+                        jsonResponse.ResponseCode = 200;
+                    }
+
+                    var ratingsByUser = db.Ratings.Where(r => r.EventId == id);
+                    var sumRating = 0;
+                    var counter = 0;
+                    foreach (var item in ratingsByUser)
+                    {
+                        sumRating += item.RatingGrade;
+                        counter++;
+                    }
+                    jsonResponse.ResponseRatingGrade = (double)sumRating / counter;
+                }
+                else
+                {
+                    jsonResponse.ResponseCode = 400;
+                    jsonResponse.ResponseMessage = "You must log in first!";
+                    jsonResponse.ResponseRatingGrade = 0;
+                }
+
+                return Json(jsonResponse, JsonRequestBehavior.AllowGet);
+            }
+            catch(Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        public class JsonRatingResponse
+        {
+            public int ResponseCode { get; set; }
+            public string ResponseMessage { get; set; }
+            public double ResponseRatingGrade { get; set; }
         }
 
         protected override void Dispose(bool disposing)

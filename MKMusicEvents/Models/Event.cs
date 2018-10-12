@@ -12,11 +12,13 @@ namespace MKMusicEvents.Models
 
         [Required]
         public string Name { get; set; }
+
         [Required]
-        [RegularExpression("(\\d{1,2}).(\\d{1,2}).(\\d{4})", ErrorMessage = "Invalid format")]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
+        
         [Required]
         public string Description { get; set; }
+        
         [Required]
         public string Image { get; set; }
     }
