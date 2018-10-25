@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    <div class="dropdown">
-        <button onclick="ddlUser()" class="dropbtn">@User.Identity.GetUserName()</button>
-        <div id="myDropdown" class="dropdown-content">
+    <div class="dropdownLoggedUser">
+        <button id="ddlLoggedInUserButton" class="dropdownLoggedUserButton">@User.Identity.GetUserName()</button>
+        <div id="ddlLoggedUserContent" class="dropdownLoggedUser-content">
             <a href="/Manage/ChangePassword">Change Password</a>
             <a href="/Home/Favorites">Favorites</a>
 

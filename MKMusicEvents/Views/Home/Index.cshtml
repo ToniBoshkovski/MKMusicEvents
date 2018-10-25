@@ -1,4 +1,4 @@
-﻿@model MKMusicEvents.ViewModels.IsFavoriteViewModel
+﻿@model IEnumerable<MKMusicEvents.ViewModels.EventRatingViewModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -16,30 +16,30 @@
 
 <div id="div-record">
     <div class="row" id="row-events">
-        @if (Model.Event.Count == 0)
+        @if (Model.Count() == 0)
         {
             <h2>There are no events.</h2>
         }
         else
         {
-            foreach (var item in Model.Event)
+            foreach (var item in Model)
             {
                 <div class="col-lg-4 col-sm-6 portfolio-item">
                     <div class="card h-100">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6 pull-left">
-                                    <h5>@item.Date</h5>
+                                    <h5>@item.Date.ToString("MM/dd/yyyy")</h5>
                                 </div>
                                 <div class="col-md-6 text-right">
 
-                                    <a href="@Url.Action("_Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btnEdit btn-edit">
+                                    <a href="@Url.Action("_Edit", "Home", new { @id = item.Id })" class="btn btn-sm editDialog btn-edit">
                                         <i class="fa fa-pencil-square-o"></i>
                                     </a>
 
-                                    @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove btnRemove" })
+                                    @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove" })
 
-                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favorite-id="@Model.IsFavorite"><i class="fa fa-heart"></i></button>
+                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favorite-id="False"><i class="fa fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -52,26 +52,78 @@
                         </div>
                         <div class="card-footer">
                             <div class="row ">
-                                <div class="col-md-6">
+                                <div class="col-md-6 ratingClass">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p data-ratingGradeId="ratingGrade"><b></b></p>
+                                            <p class="@item.Id">Rating: @item.EventRatingGrade/5</p>
                                         </div>
                                     </div>
+                                    
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <div id="rating">
-                                                <i class="fa fa-star star" data-id="1" data-eventid="@item.Id"></i>
-                                                <i class="fa fa-star star" data-id="2" data-eventid="@item.Id"></i>
-                                                <i class="fa fa-star star" data-id="3" data-eventid="@item.Id"></i>
-                                                <i class="fa fa-star star" data-id="4" data-eventid="@item.Id"></i>
-                                                <i class="fa fa-star star" data-id="5" data-eventid="@item.Id"></i>
+                                        @if (ViewBag.IsAdmin != 2 && item.EventRating != 0)
+                                        {
+                                            <div class="col-md-3">
+                                                <span class="fa fa-user fa-lg ratingUser"></span>
+                                            </div>
+                                        }
+                                        <div class="col-md-9">
+                                             <div class="rating" id="rating-@item.Id" data-ratingId="@item.EventRating">
+                                                @if (ViewBag.IsAdmin == 2)
+                                                {
+                                                    if (item.EventRatingGrade > 0)
+                                                    {
+                                                        for (var i = 1; i <= 5; i++)
+                                                        {
+                                                            if (i <= item.EventRatingGrade)
+                                                            {
+                                                                <i class="fa fa-star star" data-id="@i" data-eventid="@item.Id"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="fa fa-star-o star" data-id="@i" data-eventid="@item.Id"></i>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        for (var i = 1; i <= 5; i++)
+                                                        {
+                                                            <i class="fa fa-star-o star" data-id="@i" data-eventid="@item.Id"></i>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (item.EventRating > 0)
+                                                    {
+                                                        for (var i = 1; i <= 5; i++)
+                                                        {
+                                                            if (i <= item.EventRating)
+                                                            {
+                                                                <i class="fa fa-star star" data-id="@i" data-eventid="@item.Id"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="fa fa-star-o star" data-id="@i" data-eventid="@item.Id"></i>
+                                                            }
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        for (var i = 1; i <= 5; i++)
+                                                        {
+                                                            <i class="fa fa-star-o star" data-id="@i" data-eventid="@item.Id"></i>
+                                                        }
+                                                    }
+                                                }
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-block btn-buy" data-id="@item.Id">Buy</button>
+                                    <a href="@Url.Action("_Buy", "Home", new { @id = item.Id })" class="btn btn-block btn-buy" data-id="@item.Id">
+                                        Buy
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -80,10 +132,11 @@
             }
         }
     </div>
-    <!-- /.row -->
+
 </div>
 
-<div class="modal fade" id="AddModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--Add Modal-->
+<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -97,7 +150,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="EditModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--Edit Modal-->
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -111,87 +165,21 @@
     </div>
 </div>
 
+<!--Buy Modal-->
 <div class="modal fade" id="BuyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Buy Event</h4>
+                <div class="groupImg">
+                    <img src="~/Content/img/visa.png" />
+                    <img src="~/Content/img/maestro.png" />
+                    <img src="~/Content/img/mastercard.png" />
+                    <img src="~/Content/img/paypal.png" />
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="divForBuy">
-                <div class="modal-body">
-                    <form id="formBuy">
-                        <div class="row form-group">
-                            <div class="col-md-3">
-                                <input type="radio" name="rdbGroup" id="rdb1"/>
-                                <img src="~/Content/img/visa.png" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="radio" name="rdbGroup" id="rdb2" />
-                                <img src="~/Content/img/maestro.png" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="radio" name="rdbGroup" id="rdb3" />
-                                <img src="~/Content/img/mastercard.png" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="radio" name="rdbGroup" id="rdb4" />
-                                <img src="~/Content/img/paypal.png" />
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label for="cardNum">Card Number</label>
-                                <input type="text" class="form-control" id="cardNum">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-6">
-                                <label for="expDate">Expiry Date</label>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control" placeholder="MM"/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        /
-                                    </div>
-                                    <div class="col-md-5">
-                                        <input type="text" class="form-control" placeholder="YY" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="secCode">Security Code</label>
-                                <input type="text" class="form-control" id="secCode">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-6">
-                                <label for="cardName">Cardholder Name</label>
-                                <input type="text" class="form-control" id="cardName" placeholder="First Name">
-                            </div>
-                            <div class="col-md-6">
-                                <label style="visibility: hidden">1</label>
-                                <input type="text" class="form-control" placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <input type="checkbox"/> Save this card
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label for="qty">Quantity</label>
-                                <input type="number" id="qty" class="form-control"/> 
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close</button>
-                            <button type="button" class="btn btn-save" data-dismiss="modal"><i class="fa fa-check"></i>&nbsp;Done</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -199,126 +187,10 @@
 
 @section scripts {
     <script>
-        $(document).ready(function () {
+        MusicEvents.IsAdmin = @ViewBag.IsAdmin;
 
-            if(@ViewBag.IsAdmin == "1"){
-                $('#Add').show();
-                $('.btnEdit').show();
-                $('.btnRemove').show();
-            }else{
-                $('#Add').hide();
-                $('.btnEdit').hide();
-                $('.btnRemove').hide();
-            }
-
-
-            $('#Add').click(function (event) {
-                event.preventDefault();
-                $.get(this.href, function (response) {
-                    $('.divForAdd').html(response);
-                });
-                $('#AddModel').modal({
-                    backdrop: 'static',
-                }, 'show');
-            });
-
-            $('.editDialog').click(function (event) {
-                event.preventDefault();
-                $.get(this.href, function (response) {
-                    $('.divForUpdate').html(response);
-                });
-                $('#EditModel').modal({
-                    backdrop: 'static',
-                }, 'show');
-            });
-
-            $('.btn-buy').click(function (event) {
-                $('#formBuy').trigger('reset');
-                $('#BuyModal').modal('show');
-            });
-
-
-        });
-
-        $(".btn-favorite").click(function () {
-            var eventId = parseInt($(this).data("id"));
-            var isFavorite = $(this);
-
-            $.ajax({
-                type: "POST",
-                url: window.location.origin + "/Home/AddToFavorites",
-                data: {"id" : eventId},
-                dataType: "json",
-                success: function (response) {
-                    if (response.ErrorCode == 0) {
-                        isFavorite.css("color", "red");
-                    }
-                    else if(response.ErrorCode == 100){
-                        isFavorite.css("color", "");
-                    }
-                    else{
-                        alert(response.Message);
-                    }
-                },
-                failure: function (response) {
-                    alert(response.Message);
-                },
-                error: function (response) {
-                    alert(response.Message);
-                }
-            });
-        });
-
-        $('#rating .fa').mouseover( function(){
-            var onStar = parseInt($(this).data('id'), 10); 
-
-            $(this).parent().children('.fa').each(function(e){
-                if (e < onStar) {
-                    $(this).addClass('hover');
-                }
-                else {
-                    $(this).removeClass('hover');
-                }
-            });
-    
-        }).mouseout( function(){
-            $(this).parent().children('.fa').each(function(e){
-                $(this).removeClass('hover');
-            });
-        });
-
-
-        $('#rating .fa').click(function() {
-            var eventId = parseInt($(this).data("eventid"))
-            var onStar = parseInt($(this).data('id'), 10);
-            var stars = $(this).parent().children(".fa");
-            var rating = $(this).data('id');
-
-            for(i=0; i<stars.length; i++){
-                $(stars[i]).removeClass('selected');
-            }
-            for (i=0; i < onStar; i++) {
-                $(stars[i]).addClass('selected');
-            }
-
-            $.ajax({
-                type: "POST",
-                url: window.location.origin + "/Home/AddToRating",
-                data: {"id" : eventId, "rating" : rating},
-                dataType: "json",
-                success: function (response) {
-                    $('#ratingGrade').text("Rating: " + response.ResponseRatingGrade + "/5");
-                },
-                failure: function (response) {
-                    alert(response.Message);
-                },
-                error: function (response) {
-                    alert(response.Message);
-                }
-            });
-        });
-        
-
+        MusicEvents.InitIndexPage();
+        MusicEvents.isAdminCrudButtons();
     </script>
 }
 

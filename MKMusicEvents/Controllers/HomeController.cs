@@ -16,18 +16,45 @@ namespace MKMusicEvents.Controllers
 
         public ActionResult Index(string search)
         {
-            if(User.Identity.Name != null)
+            ViewBag.IsAdmin = 2;
+            var userId = User.Identity.GetUserId();
+            if(User.Identity.Name != "")
             {
                 ViewBag.IsAdmin = db.Users.Where(x => x.UserName == System.Web.HttpContext.Current.User.Identity.Name).Select(x => x.IsAdmin).FirstOrDefault();
             }
-            var model = db.Events.Where(/*m => m.Date.Contains(search) ||*/ m => m.Name.Contains(search) || search == null).ToList();
-            var viewModel = new IsFavoriteViewModel 
-            { 
-                Event = model,
-                IsFavorite = false
-            };
-            
-            return View(viewModel);
+
+            List<EventRatingViewModel> ListViewModel = new List<EventRatingViewModel>();
+            var events = db.Events.Where(/*m => m.Date.Contains(search) ||*/ m => m.Name.Contains(search) || search == null).ToList();
+            var ratings = db.Ratings.Where(r => r.UserId == userId).ToList();
+
+            foreach (var e in events)
+            {
+                if (!db.Ratings.Any(r => r.UserId == userId && r.EventId == e.Id))
+                {
+                    EventRatingViewModel viewmodel = new EventRatingViewModel();
+                    viewmodel.Id = e.Id;
+                    viewmodel.Name = e.Name;
+                    viewmodel.Date = e.Date;
+                    viewmodel.Description = e.Description;
+                    viewmodel.Image = e.Image;
+                    viewmodel.EventRatingGrade = e.EventRatingGrade;
+                    viewmodel.EventRating = 0;
+                    ListViewModel.Add(viewmodel);
+                }
+                else
+                {
+                    EventRatingViewModel viewmodel = new EventRatingViewModel();
+                    viewmodel.Id = e.Id;
+                    viewmodel.Name = e.Name;
+                    viewmodel.Date = e.Date;
+                    viewmodel.Description = e.Description;
+                    viewmodel.Image = e.Image;
+                    viewmodel.EventRatingGrade = e.EventRatingGrade;
+                    viewmodel.EventRating = ratings.Where(r => r.EventId == e.Id).Select(r => r.RatingGrade).FirstOrDefault();
+                    ListViewModel.Add(viewmodel);
+                }
+            }
+            return View(ListViewModel);
         }
 
         public ActionResult _Add()
@@ -67,13 +94,6 @@ namespace MKMusicEvents.Controllers
             db.Events.Remove(db.Events.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index", db.Events.ToList());
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
 
         public ActionResult EventInfo(int id)
@@ -136,8 +156,8 @@ namespace MKMusicEvents.Controllers
         {
             var userId = User.Identity.GetUserId();
             var model = from e in db.Events.ToList()
-                            join f in db.Favorites.Where(f => f.UserId == userId).ToList() on e.Id equals f.EventId
-                            select e;
+                        join f in db.Favorites.Where(f => f.UserId == userId).ToList() on e.Id equals f.EventId
+                        select e;
             return View(model);
         }
 
@@ -177,7 +197,10 @@ namespace MKMusicEvents.Controllers
                         sumRating += item.RatingGrade;
                         counter++;
                     }
-                    jsonResponse.ResponseRatingGrade = (double)sumRating / counter;
+                    jsonResponse.ResponseRatingGrade = System.Math.Round((double)sumRating / counter, 2);
+                    var thisEvent = db.Events.Where(e => e.Id == id).FirstOrDefault();
+                    thisEvent.EventRatingGrade = System.Math.Round(jsonResponse.ResponseRatingGrade, 2);
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -199,6 +222,23 @@ namespace MKMusicEvents.Controllers
             public int ResponseCode { get; set; }
             public string ResponseMessage { get; set; }
             public double ResponseRatingGrade { get; set; }
+        }
+
+        public ActionResult _Buy()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult _Buy(Ticket ticket)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tickets.Add(ticket);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index", db.Tickets.ToList());
         }
 
         protected override void Dispose(bool disposing)

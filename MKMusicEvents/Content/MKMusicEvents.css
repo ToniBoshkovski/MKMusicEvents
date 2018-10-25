@@ -148,7 +148,7 @@ label {
     }
 }
 
-.dropbtn {
+.dropdownLoggedUserButton {
     background-color: #F3E9DC;
     color: black;
     padding: 16px;
@@ -157,16 +157,16 @@ label {
     cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
+.dropdownLoggedUserButton:hover, .dropdownLoggedUserButton:focus {
     background-color: #2980B9;
 }
 
-.dropdown {
+.dropdownLoggedUser {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-content {
+.dropdownLoggedUser-content {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -176,14 +176,14 @@ label {
     z-index: 1;
 }
 
-    .dropdown-content a {
+    .dropdownLoggedUser-content a {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
     }
 
-.dropdown a:hover {
+.dropdownLoggedUser a:hover {
     background-color: #ddd;
 }
 
@@ -191,22 +191,29 @@ label {
     display: block;
 }
 
-#rating {
+.ratingUser {
+    color: #FCD7AD;
+}
+
+.rating {
     
     display: flex;
     font-size: 20px;
     color: #FCD7AD;
 }
 
-.star {
-    margin-left: 5px;
-    color: #FCD7AD;
-}
-
-.star.hover, .star.selected {
-    color: #C57F1E;
-}
-
 .btn-buy {
     margin-top: 10px;
+}
+
+.groupImg {
+    margin-left: 60px;
+}
+
+.groupImg img {
+    width: 60px;
+}
+
+.input-validation-error {
+    border: 2px solid red;
 }

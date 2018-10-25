@@ -1,17 +1,178 @@
-﻿function ddlUser() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
+﻿(function (m, $) {
+    "use strict";
 
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
+    $('#ddlLoggedInUserButton').click(function () {
+        document.getElementById("ddlLoggedUserContent").classList.toggle("show");
+    });
 
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+    var onClickWindow = m.onclick;
+    onClickWindow = function (event) {
+        if (!event.target.matches('.dropdownLoggedUserButton')) {
+
+            var dropdowns = document.getElementsByClassName("dropdownLoggedUser-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
             }
         }
     }
-}
+
+    m.InitIndexPage = function () {
+
+        $('.btn-create').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForAdd').html(response);
+            });
+            $('#AddModal').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+
+        $('.btn-edit').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForUpdate').html(response);
+            });
+            $('#EditModal').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+
+        $('.btn-buy').click(function (event) {
+            event.preventDefault();
+            $.get(this.href, function (response) {
+                $('.divForBuy').html(response);
+            });
+            $('#BuyModal').modal({
+                backdrop: 'static',
+            }, 'show');
+        });
+
+        $(".btn-favorite").click(function () {
+            var eventId = parseInt($(this).data("id"));
+            var isFavorite = $(this);
+            MusicEvents.favoriteButtonAjaxMethod(eventId, isFavorite);
+        });
+
+        $('.rating .fa').mouseover(function () {
+            var onStar = parseInt($(this).data('id'), 10);
+
+            $(this).parent().children('.fa').each(function (e) {
+                if (m.IsAdmin != 2) {
+                    if (e < onStar) {
+                        $(this).removeClass('fa-star-o').addClass('fa-star');
+                    }
+                    else {
+                        $(this).removeClass('fa-star').addClass('fa-star-o');
+                    }
+                }
+            });
+        }).mouseout(function () {
+            MusicEvents.resetStarRatingOnMouseOut($(this).parent());
+        });
+
+        $('.rating .fa').click(function () {
+            var eventId = parseInt($(this).data("eventid"))
+            var onStar = parseInt($(this).data('id'), 10);
+            var stars = $(this).parent().children(".fa");
+            var rating = $(this).data('id');
+
+            if (m.IsAdmin != 2) {
+                for (var i = 0; i < stars.length; i++) {
+                    $(stars[i]).removeClass('fa-star').addClass('fa-star-o');
+                }
+                for (var i = 0; i < onStar; i++) {
+                    $(stars[i]).removeClass('fa-star-o').addClass('fa-star');
+                }
+            }
+
+            MusicEvents.favoriteButtonAjaxMethod(eventId, rating);
+        });
+
+        m.favoriteButtonAjaxMethod = function (eventId, isFavorite) {
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Home/AddToFavorites",
+                data: { "id": eventId },
+                dataType: "json",
+                success: function (response) {
+                    if (response.ErrorCode == 0) {
+                        isFavorite.css("color", "red");
+                    }
+                    else if (response.ErrorCode == 100) {
+                        isFavorite.css("color", "");
+                    }
+                    else {
+                        alert(response.Message);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.Message);
+                },
+                error: function (response) {
+                    alert(response.Message);
+                }
+            });
+        };
+
+        m.ratingStarsAjaxMethod = function (eventId, rating) {
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Home/AddToRating",
+                data: { "id": eventId, "rating": rating },
+                dataType: "json",
+                success: function (response) {
+                    if (response.ResponseCode == 200 || response.ResponseCode == 100) {
+                        $('.' + eventId).text("Rating: " + response.ResponseRatingGrade + "/5");
+                        $(".rating").attr('data-ratingId', rating);
+                        MusicEvents.resetStarRatingOnMouseOut($("#rating-" + eventId));
+                    }
+                    else {
+                        alert(response.ResponseMessage);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.Message);
+                },
+                error: function (response) {
+                    alert(response.Message);
+                }
+            });
+        };
+
+        m.resetStarRatingOnMouseOut = function (parent) {
+            var userEventRating = parent.attr('data-ratingId');
+            parent.children('.fa').each(function (index, value) {
+                if (m.IsAdmin != 2) {
+                    if (index < userEventRating) {
+                        $(value).removeClass('fa-star-o').addClass('fa-star');
+                    }
+                    else {
+                        $(value).removeClass('fa-star').addClass('fa-star-o');
+                    }
+                }
+            });
+        }
+    };
+
+    m.isAdminCrudButtons = function () {
+        if (m.IsAdmin == 1) {
+            $('.btn-create').show();
+            $('.btn-edit').show();
+            $('.btn-delete').show();
+            $('.btn-favorite').hide();
+            $('.ratingClass').remove();
+
+        } else {
+            $('.btn-create').hide();
+            $('.btn-edit').hide();
+            $('.btn-delete').hide();
+            $('.btn-favorite').show();
+        }
+    };
+
+}(window.MusicEvents = window.MusicEvents || {}, jQuery));
