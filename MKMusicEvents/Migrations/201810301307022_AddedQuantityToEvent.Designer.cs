@@ -7,13 +7,13 @@ namespace MKMusicEvents.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedMyTickets : IMigrationMetadata
+    public sealed partial class AddedQuantityToEvent : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedMyTickets));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedQuantityToEvent));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810050817489_AddedMyTickets"; }
+            get { return "201810301307022_AddedQuantityToEvent"; }
         }
         
         string IMigrationMetadata.Source

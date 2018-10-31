@@ -201,29 +201,33 @@
     <Compile Include="Migrations\201810040832589_ChangeDateEvent.Designer.cs">
       <DependentUpon>201810040832589_ChangeDateEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810050817489_AddedMyTickets.cs" />
-    <Compile Include="Migrations\201810050817489_AddedMyTickets.Designer.cs">
-      <DependentUpon>201810050817489_AddedMyTickets.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810081025478_DropMyTickers.cs" />
-    <Compile Include="Migrations\201810081025478_DropMyTickers.Designer.cs">
-      <DependentUpon>201810081025478_DropMyTickers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201810090708457_AddRating.cs" />
     <Compile Include="Migrations\201810090708457_AddRating.Designer.cs">
       <DependentUpon>201810090708457_AddRating.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810160724323_AddedTicket.cs" />
-    <Compile Include="Migrations\201810160724323_AddedTicket.Designer.cs">
-      <DependentUpon>201810160724323_AddedTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810160855578_UpdateTicket.cs" />
-    <Compile Include="Migrations\201810160855578_UpdateTicket.Designer.cs">
-      <DependentUpon>201810160855578_UpdateTicket.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201810171018108_AddRatingGradeInEvents.cs" />
     <Compile Include="Migrations\201810171018108_AddRatingGradeInEvents.Designer.cs">
       <DependentUpon>201810171018108_AddRatingGradeInEvents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810301307022_AddedQuantityToEvent.cs" />
+    <Compile Include="Migrations\201810301307022_AddedQuantityToEvent.Designer.cs">
+      <DependentUpon>201810301307022_AddedQuantityToEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810301357374_RenameTicketInformationTable.cs" />
+    <Compile Include="Migrations\201810301357374_RenameTicketInformationTable.Designer.cs">
+      <DependentUpon>201810301357374_RenameTicketInformationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810301401593_AddedTicketTable.cs" />
+    <Compile Include="Migrations\201810301401593_AddedTicketTable.Designer.cs">
+      <DependentUpon>201810301401593_AddedTicketTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810310959165_AddedTimeToTicket.cs" />
+    <Compile Include="Migrations\201810310959165_AddedTimeToTicket.Designer.cs">
+      <DependentUpon>201810310959165_AddedTimeToTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810311114543_AddedPriceToEvent.cs" />
+    <Compile Include="Migrations\201810311114543_AddedPriceToEvent.Designer.cs">
+      <DependentUpon>201810311114543_AddedPriceToEvent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -233,9 +237,11 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EventRatingViewModel.cs" />
+    <Compile Include="ViewModels\MyTicketsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\3-col-portfolio.css" />
@@ -247,6 +253,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\dataTables.bootstrap4.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\2cellos.jpg" />
     <Content Include="Content\img\brit-floyd.jpg" />
@@ -440,6 +447,7 @@
     <Content Include="Views\Home\_Add.cshtml" />
     <Content Include="Views\Home\Favorites.cshtml" />
     <Content Include="Views\Home\_Buy.cshtml" />
+    <Content Include="Views\Home\MyTickets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -461,23 +469,26 @@
     <EmbeddedResource Include="Migrations\201810040832589_ChangeDateEvent.resx">
       <DependentUpon>201810040832589_ChangeDateEvent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810050817489_AddedMyTickets.resx">
-      <DependentUpon>201810050817489_AddedMyTickets.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810081025478_DropMyTickers.resx">
-      <DependentUpon>201810081025478_DropMyTickers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810090708457_AddRating.resx">
       <DependentUpon>201810090708457_AddRating.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810160724323_AddedTicket.resx">
-      <DependentUpon>201810160724323_AddedTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810160855578_UpdateTicket.resx">
-      <DependentUpon>201810160855578_UpdateTicket.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810171018108_AddRatingGradeInEvents.resx">
       <DependentUpon>201810171018108_AddRatingGradeInEvents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810301307022_AddedQuantityToEvent.resx">
+      <DependentUpon>201810301307022_AddedQuantityToEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810301357374_RenameTicketInformationTable.resx">
+      <DependentUpon>201810301357374_RenameTicketInformationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810301401593_AddedTicketTable.resx">
+      <DependentUpon>201810301401593_AddedTicketTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810310959165_AddedTimeToTicket.resx">
+      <DependentUpon>201810310959165_AddedTimeToTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311114543_AddedPriceToEvent.resx">
+      <DependentUpon>201810311114543_AddedPriceToEvent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

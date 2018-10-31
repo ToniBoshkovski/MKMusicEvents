@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MKMusicEvents.ViewModels.MyTicketsViewModel>
+
+@{
+    ViewBag.Title = "MyTickets";
+}
+
+<table class="table table-striped" id="MyTicketsTable">
+    <thead>
+        <tr>
+            <th>Event name</th>
+            <th>Event date</th>
+            <th>Quantity</th>
+            <th>Paid price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td><a href="@Url.Action("EventInfo", "Home", new { id = item.Id})">@item.Name</a></td>
+                <td>@item.Date</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        MusicEvents.DataTable();
+        MusicEvents.FooterFixed();
+    </script>
+}
+

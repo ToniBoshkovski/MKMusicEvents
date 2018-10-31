@@ -1,6 +1,8 @@
 ﻿(function (m, $) {
     "use strict";
 
+    $('[data-favorite-id="True"]').css('color', 'red');
+
     $('#ddlLoggedInUserButton').click(function () {
         document.getElementById("ddlLoggedUserContent").classList.toggle("show");
     });
@@ -55,7 +57,7 @@
         $(".btn-favorite").click(function () {
             var eventId = parseInt($(this).data("id"));
             var isFavorite = $(this);
-            MusicEvents.favoriteButtonAjaxMethod(eventId, isFavorite);
+            MusicEvents.FavoriteButtonAjaxMethod(eventId, isFavorite);
         });
 
         $('.rating .fa').mouseover(function () {
@@ -72,7 +74,7 @@
                 }
             });
         }).mouseout(function () {
-            MusicEvents.resetStarRatingOnMouseOut($(this).parent());
+            MusicEvents.ResetStarRatingOnMouseOut($(this).parent());
         });
 
         $('.rating .fa').click(function () {
@@ -90,10 +92,10 @@
                 }
             }
 
-            MusicEvents.favoriteButtonAjaxMethod(eventId, rating);
+            MusicEvents.RatingStarsAjaxMethod(eventId, rating);
         });
 
-        m.favoriteButtonAjaxMethod = function (eventId, isFavorite) {
+        m.FavoriteButtonAjaxMethod = function (eventId, isFavorite) {
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/Home/AddToFavorites",
@@ -102,9 +104,11 @@
                 success: function (response) {
                     if (response.ErrorCode == 0) {
                         isFavorite.css("color", "red");
+                        //$('.btn-favorite').attr('data-favorite-id', "True");
                     }
                     else if (response.ErrorCode == 100) {
                         isFavorite.css("color", "");
+                        //$('.btn-favorite').attr('data-favorite-id', "False");
                     }
                     else {
                         alert(response.Message);
@@ -119,7 +123,7 @@
             });
         };
 
-        m.ratingStarsAjaxMethod = function (eventId, rating) {
+        m.RatingStarsAjaxMethod = function (eventId, rating) {
             $.ajax({
                 type: "POST",
                 url: window.location.origin + "/Home/AddToRating",
@@ -129,7 +133,7 @@
                     if (response.ResponseCode == 200 || response.ResponseCode == 100) {
                         $('.' + eventId).text("Rating: " + response.ResponseRatingGrade + "/5");
                         $(".rating").attr('data-ratingId', rating);
-                        MusicEvents.resetStarRatingOnMouseOut($("#rating-" + eventId));
+                        MusicEvents.ResetStarRatingOnMouseOut($("#rating-" + eventId));
                     }
                     else {
                         alert(response.ResponseMessage);
@@ -144,7 +148,7 @@
             });
         };
 
-        m.resetStarRatingOnMouseOut = function (parent) {
+        m.ResetStarRatingOnMouseOut = function (parent) {
             var userEventRating = parent.attr('data-ratingId');
             parent.children('.fa').each(function (index, value) {
                 if (m.IsAdmin != 2) {
@@ -156,11 +160,13 @@
                     }
                 }
             });
-        }
+        };
     };
 
-    m.isAdminCrudButtons = function () {
+    m.IsAdminCrudButtons = function () {
+
         if (m.IsAdmin == 1) {
+            $('.btn-buy').addClass('btnBuyDisabled');
             $('.btn-create').show();
             $('.btn-edit').show();
             $('.btn-delete').show();
@@ -168,11 +174,30 @@
             $('.ratingClass').remove();
 
         } else {
+            if (m.IsAdmin == 2) {
+                $('.btn-buy').addClass('btnBuyDisabled');
+            }
+
             $('.btn-create').hide();
             $('.btn-edit').hide();
             $('.btn-delete').hide();
             $('.btn-favorite').show();
         }
+    };
+
+    m.DataTable = function () {
+        $('#MyTicketsTable').DataTable();
+    };
+
+    m.FooterFixed = function () {
+            function setBodyMinHeight() {
+                $('.body-content').css('minHeight', window.innerHeight - $('.navbar').height() - $('#footer').height());
+            }
+            setBodyMinHeight();
+
+            window.onresize = function () {
+                setBodyMinHeight();
+            }
     };
 
 }(window.MusicEvents = window.MusicEvents || {}, jQuery));

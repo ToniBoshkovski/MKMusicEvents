@@ -3,16 +3,16 @@ namespace MKMusicEvents.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UpdateTicket : DbMigration
+    public partial class AddedQuantityToEvent : DbMigration
     {
         public override void Up()
         {
-            DropColumn("dbo.Tickets", "CardholderLastName");
+            AddColumn("dbo.Events", "Quantity", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            AddColumn("dbo.Tickets", "CardholderLastName", c => c.String(nullable: false));
+            DropColumn("dbo.Events", "Quantity");
         }
     }
 }

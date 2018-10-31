@@ -29,9 +29,9 @@
         </div>
         <div class="row form-group">
             <div class="col-md-12">     
-                    @Html.LabelFor(m => m.Date)
-                    @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker" })
-                    @Html.ValidationMessageFor(m => m.Date, "", new { style = "color: red", @class = "pull-right" })
+                @Html.LabelFor(m => m.Date)
+                @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker" })
+                @Html.ValidationMessageFor(m => m.Date, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
         <div class="row form-group">
@@ -39,6 +39,13 @@
                 @Html.LabelFor(m => m.Description)
                 @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3" })
                 @Html.ValidationMessageFor(m => m.Description, "", new { style = "color: red", @class = "pull-right" })
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(m => m.Quantity)
+                @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Quantity, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
     </div>

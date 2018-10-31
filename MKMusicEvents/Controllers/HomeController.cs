@@ -29,9 +29,18 @@ namespace MKMusicEvents.Controllers
 
             foreach (var e in events)
             {
+                EventRatingViewModel viewmodel = new EventRatingViewModel();
+                if (!db.Favorites.Any(f => f.UserId == userId && f.EventId == e.Id))
+                {
+                    viewmodel.Favorite = false;
+                }
+                else
+                {
+                    viewmodel.Favorite = true;
+                }
+
                 if (!db.Ratings.Any(r => r.UserId == userId && r.EventId == e.Id))
                 {
-                    EventRatingViewModel viewmodel = new EventRatingViewModel();
                     viewmodel.Id = e.Id;
                     viewmodel.Name = e.Name;
                     viewmodel.Date = e.Date;
@@ -43,7 +52,6 @@ namespace MKMusicEvents.Controllers
                 }
                 else
                 {
-                    EventRatingViewModel viewmodel = new EventRatingViewModel();
                     viewmodel.Id = e.Id;
                     viewmodel.Name = e.Name;
                     viewmodel.Date = e.Date;
@@ -230,15 +238,54 @@ namespace MKMusicEvents.Controllers
         }
 
         [HttpPost]
-        public ActionResult _Buy(Ticket ticket)
+        public ActionResult _Buy(TicketInformation ticketInformation, int id)
         {
             if (ModelState.IsValid)
             {
-                db.Tickets.Add(ticket);
+                var ticketsAvailable = db.Events.Where(e => e.Id == id).Select(e => e.Quantity).FirstOrDefault();
+                if (ticketsAvailable > 0 && ticketsAvailable >= ticketInformation.Quantity)
+                {
+                    Ticket tickets = new Ticket();
+                    tickets.UserId = User.Identity.GetUserId();
+                    tickets.EventId = id;
+                    tickets.Quantity = ticketInformation.Quantity;
+                    tickets.Time = DateTime.Now.ToString();
+                    var model = db.Events.Find(id);
+                    model.Quantity = ticketsAvailable - ticketInformation.Quantity;
+                    db.Tickets.Add(tickets);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    Console.Write("Not enough tickets available");
+                }
+                db.TicketsInformation.Add(ticketInformation);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Index", db.Tickets.ToList());
+            return RedirectToAction("Index", db.TicketsInformation.ToList());
+        }
+
+        public ActionResult MyTickets()
+        {
+            var userId = User.Identity.GetUserId();
+            var model = from e in db.Events.ToList()
+                        join t in db.Tickets.Where(t => t.UserId == userId).ToList() on e.Id equals t.EventId
+                        select new { e.Id, e.Name, e.Price, t.Quantity, t.Time, };
+
+            List<MyTicketsViewModel> MyTicketsViewModel = new List<MyTicketsViewModel>();
+            foreach (var item in model)
+            {
+                MyTicketsViewModel viewModel = new MyTicketsViewModel();
+                viewModel.Id = item.Id;
+                viewModel.Name = item.Name;
+                var price = item.Price * item.Quantity;
+                viewModel.Price = price + " ден.";
+                viewModel.Quantity = item.Quantity;
+                viewModel.Date = item.Time;
+                MyTicketsViewModel.Add(viewModel);
+            }
+            return View(MyTicketsViewModel);
         }
 
         protected override void Dispose(bool disposing)

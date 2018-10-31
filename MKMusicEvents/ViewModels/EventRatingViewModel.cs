@@ -14,7 +14,7 @@ namespace MKMusicEvents.ViewModels
         public string Description { get; set; }
         public string Image { get; set; }
         public double EventRatingGrade { get; set; }
-
         public int EventRating { get; set; }
+        public bool Favorite { get; set; }
     }
 }

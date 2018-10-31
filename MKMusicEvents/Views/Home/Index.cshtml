@@ -39,7 +39,7 @@
 
                                     @Ajax.ActionLink(" ", "Delete", "Home", new { @id = item.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "div-record" }, new { @class = "btn btn-sm btn-delete fa fa-remove" })
 
-                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favorite-id="False"><i class="fa fa-heart"></i></button>
+                                    <button class="btn btn-sm btn-favorite" data-id="@item.Id" data-favorite-id="@item.Favorite"><i class="fa fa-heart"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
         MusicEvents.IsAdmin = @ViewBag.IsAdmin;
 
         MusicEvents.InitIndexPage();
-        MusicEvents.isAdminCrudButtons();
+        MusicEvents.IsAdminCrudButtons();
     </script>
 }
 

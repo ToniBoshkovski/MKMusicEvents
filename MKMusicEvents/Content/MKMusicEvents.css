@@ -206,6 +206,11 @@ label {
     margin-top: 10px;
 }
 
+.btnBuyDisabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
 .groupImg {
     margin-left: 60px;
 }
@@ -217,3 +222,27 @@ label {
 .input-validation-error {
     border: 2px solid red;
 }
+
+#MyTicketsTable tr {
+    border: 1px solid #2F3847;
+}
+
+#MyTicketsTable td{
+    border: 1px solid #2F3847;
+}
+
+#MyTicketsTable th{
+    border: 1px solid #2F3847;
+    background-color: #C57F1E;
+    color: white;
+}
+
+.page-link {
+    color: #C57F1E;
+}
+
+.page-item.active .page-link {
+    background-color: #2F3847;
+    border-color: #2F3847;
+}
+

@@ -23,6 +23,11 @@ namespace MKMusicEvents.Models
         public string Image { get; set; }
 
         public double  EventRatingGrade { get; set; }
+
+        [Required]
+        public int Quantity { get; set; }
+
+        public int Price { get; set; }
     }
     
 }

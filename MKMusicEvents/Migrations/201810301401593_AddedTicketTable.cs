@@ -3,7 +3,7 @@ namespace MKMusicEvents.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedTicket : DbMigration
+    public partial class AddedTicketTable : DbMigration
     {
         public override void Up()
         {
@@ -12,14 +12,8 @@ namespace MKMusicEvents.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        CardName = c.String(nullable: false),
-                        CardNumber = c.Int(nullable: false),
-                        ExpiryDateMonth = c.Int(nullable: false),
-                        ExpiryDateYear = c.Int(nullable: false),
-                        SecurityCode = c.Int(nullable: false),
-                        CardholderName = c.String(nullable: false),
-                        CardholderLastName = c.String(nullable: false),
-                        SaveCard = c.Boolean(nullable: false),
+                        UserId = c.String(),
+                        EventId = c.Int(nullable: false),
                         Quantity = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

@@ -26,8 +26,8 @@ else
     }
 }
 
-<script>
-    $(document).ready(function () {
-        $('.bottom').removeClass('bottom').addClass('fixed-bottom');
-    });
-</script>
+@section scripts {
+    <script>
+        MusicEvents.FooterFixed();
+    </script>
+}
