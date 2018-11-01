@@ -163,7 +163,7 @@
         };
     };
 
-    m.IsAdminCrudButtons = function () {
+    m.IsAdminShowButtons = function () {
 
         if (m.IsAdmin == 1) {
             $('.btn-buy').addClass('btnBuyDisabled');
@@ -172,6 +172,8 @@
             $('.btn-delete').show();
             $('.btn-favorite').hide();
             $('.ratingClass').remove();
+            $('.DropdownFavoritesButton').remove();
+            $('.DropdownMyTicketsButton').remove();
 
         } else {
             if (m.IsAdmin == 2) {
@@ -187,6 +189,12 @@
 
     m.DataTable = function () {
         $('#MyTicketsTable').DataTable();
+
+        $('.dataTables_filter').hide();
+        var table = $('#MyTicketsTable').DataTable();
+        $('#ticketsSearch').keyup(function () {
+            table.search($(this).val()).draw();
+        })
     };
 
     m.FooterFixed = function () {

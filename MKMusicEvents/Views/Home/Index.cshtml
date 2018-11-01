@@ -29,7 +29,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6 pull-left">
-                                    <h5>@item.Date.ToString("MM/dd/yyyy")</h5>
+                                    <h5>@item.Date.ToString("dd/MM/yyyy")</h5>
                                 </div>
                                 <div class="col-md-6 text-right">
 
@@ -190,7 +190,7 @@
         MusicEvents.IsAdmin = @ViewBag.IsAdmin;
 
         MusicEvents.InitIndexPage();
-        MusicEvents.IsAdminCrudButtons();
+        MusicEvents.IsAdminShowButtons();
     </script>
 }
 

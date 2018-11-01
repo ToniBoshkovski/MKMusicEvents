@@ -56,6 +56,10 @@ label {
     background-color: #F3E9DC;
 }
 
+.search-icon:hover {
+    background-color: #C57F1E !important;
+}
+
 .fa-search:before {
     color: #2F3847;
 }
@@ -104,34 +108,68 @@ label {
     color: #F3E9DC;
 }
 
-.btn-buy, .btn-buy:hover, .btn-buy:active {
+.btn-buy {
     color: #fff;
     background-color: #08605F;
     border-color: #08605F;
 }
 
-.btn-edit, .btn-edit:hover, .btn-edit:active {
+.btn-buy:hover, .btn-buy:active {
+    color: #fff;
+    background-color: #064f4e;
+    border-color: #064f4e;
+}
+
+.btn-edit {
     color: #fff;
     background-color: #5B4B49;
     border-color: #5B4B49;
 }
 
-.btn-delete, .btn-delete:hover, .btn-delete:active {
+.btn-edit:hover, .btn-edit:active {
+    color: #fff;
+    background-color: #4f403f;
+    border-color: #4f403f;
+}
+
+.btn-delete {
     color: #fff;
     background-color: #9B1D20;
     border-color: #9B1D20;
 }
 
-.btn-create, .btn-create:hover, .btn-create:active, .btn-save, .btn-save:hover, .btn-save:active {
+.btn-delete:hover, .btn-delete:active {
+    color: #fff;
+    background-color: #84191b;
+    border-color: #84191b;
+}
+
+.btn-create, .btn-save {
     color: #fff;
     background-color: #C57F1E;
     border-color: #C57F1E;
 }
 
-.btn-favorite, .btn-favorite:hover, .btn-favorite:active {
+.btn-create:hover, .btn-create:active, .btn-save:hover, .btn-save:active {
+    color: #fff;
+    background-color: #a86100;
+    border-color: #a86100;
+}
+
+.btn-favorite {
     color: #fff;
     background-color: #C57F1E;
     border-color: #C57F1E;
+}
+
+.btn-favorite:hover, .btn-favorite:active {
+    color: #fff;
+    background-color: #a86100;
+    border-color: #a86100;
+}
+
+.btn-default:hover, .btn-default:active {
+    background-color: grey;
 }
 
 .modal-content {
@@ -153,12 +191,14 @@ label {
     color: black;
     padding: 16px;
     font-size: 16px;
-    border: none;
+    border: 1px solid #2F3847;
     cursor: pointer;
+    border-radius: 5px;
+    min-width: 160px;
 }
 
-.dropdownLoggedUserButton:hover, .dropdownLoggedUserButton:focus {
-    background-color: #2980B9;
+.dropdownLoggedUserButton:hover {
+    background-color: #C57F1E;
 }
 
 .dropdownLoggedUser {
@@ -169,11 +209,13 @@ label {
 .dropdownLoggedUser-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #F3E9DC;
     min-width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    border: 1px solid #2F3847;
+    border-radius: 5px;
 }
 
     .dropdownLoggedUser-content a {
@@ -184,7 +226,7 @@ label {
     }
 
 .dropdownLoggedUser a:hover {
-    background-color: #ddd;
+    background-color: #C57F1E;
 }
 
 .show {
@@ -241,8 +283,21 @@ label {
     color: #C57F1E;
 }
 
+#ticketsSearch {
+    float:right;
+    width: 300px;
+    border: 1px solid #2F3847;
+}
+
 .page-item.active .page-link {
     background-color: #2F3847;
     border-color: #2F3847;
 }
 
+.FavoritesEventName {
+    color: #C57F1E;
+}
+
+.FavoritesEventDescription, .FavoritesEventDate {
+    color: #2F3847;
+}
