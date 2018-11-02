@@ -24,7 +24,7 @@ namespace MKMusicEvents.Controllers
             }
 
             List<EventRatingViewModel> ListViewModel = new List<EventRatingViewModel>();
-            var events = db.Events.Where(/*m => m.Date.Contains(search) ||*/ m => m.Name.Contains(search) || search == null).ToList();
+            var events = db.Events.Where(m => m.Name.Contains(search) || search == null).ToList();
             var ratings = db.Ratings.Where(r => r.UserId == userId).ToList();
 
             foreach (var e in events)

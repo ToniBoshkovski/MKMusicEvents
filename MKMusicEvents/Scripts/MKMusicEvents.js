@@ -172,8 +172,6 @@
             $('.btn-delete').show();
             $('.btn-favorite').hide();
             $('.ratingClass').remove();
-            $('.DropdownFavoritesButton').remove();
-            $('.DropdownMyTicketsButton').remove();
 
         } else {
             if (m.IsAdmin == 2) {
@@ -185,6 +183,11 @@
             $('.btn-delete').hide();
             $('.btn-favorite').show();
         }
+    };
+
+    m.IsAdminDropdownButtons = function () {
+        $('.DropdownFavoritesButton').remove();
+        $('.DropdownMyTicketsButton').remove();
     };
 
     m.DataTable = function () {

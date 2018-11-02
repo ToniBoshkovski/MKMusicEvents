@@ -31,7 +31,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 @Html.LabelFor(m => m.Date)
-                @Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "datetimepicker" })
+                @Html.TextBoxFor(m => m.Date, "{0:dd.MM.yyyy}", new { @class = "form-control", id = "datetimepickerEdit", autocomplete = "off" })
                 @Html.ValidationMessageFor(m => m.Date, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
@@ -43,10 +43,15 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 @Html.LabelFor(m => m.Quantity)
                 @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Quantity, "", new { style = "color: red", @class = "pull-right" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Price)
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Price, "", new { style = "color: red", @class = "pull-right" })
             </div>
         </div>
     </div>
@@ -59,11 +64,11 @@
 <script>
     $(function () {
         $.validator.methods.date = function (value, element) {
-            return this.optional(element) || moment(value, "DD/MM/YYYY", true).isValid();
+            return this.optional(element) || moment(value, "DD.MM.YYYY", true).isValid();
         }
 
-        $('#datetimepicker').datetimepicker({
-            format: 'DD/MM/YYYY'
+        $('#datetimepickerEdit').datetimepicker({
+            format: 'DD.MM.YYYY'
         });
     });
 </script>
