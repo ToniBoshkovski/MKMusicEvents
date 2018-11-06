@@ -104,11 +104,9 @@
                 success: function (response) {
                     if (response.ErrorCode == 0) {
                         isFavorite.css("color", "red");
-                        //$('.btn-favorite').attr('data-favorite-id', "True");
                     }
                     else if (response.ErrorCode == 100) {
                         isFavorite.css("color", "");
-                        //$('.btn-favorite').attr('data-favorite-id', "False");
                     }
                     else {
                         alert(response.Message);
@@ -186,8 +184,69 @@
     };
 
     m.IsAdminDropdownButtons = function () {
-        $('.DropdownFavoritesButton').remove();
-        $('.DropdownMyTicketsButton').remove();
+        if (m.IsAdmin == 1) {
+            $('.DropdownFavoritesButton').remove();
+            $('.DropdownMyTicketsButton').remove();
+        }
+    };
+
+    m.FavoriteCheckboxEvent = function (listOfEvents) {
+
+        $('.checkbox').click(function () {
+            if ($(this).hasClass('favoriteEventCheckbox')) {
+                $(this).removeClass('favoriteEventCheckbox');
+                for(var i=0; i< listOfEvents.length; i++){
+                    if (listOfEvents[i] == $(this).parent().parent().attr("data-event-id")) {
+                        listOfEvents.splice(i, 1);
+                        console.log(listOfEvents);
+                    }
+                }
+            }
+            else {
+                $(this).addClass('favoriteEventCheckbox');
+                listOfEvents.push($(this).parent().parent().attr("data-event-id"));
+                console.log(listOfEvents);
+            }
+        });
+
+        m.FavoritesButtons = function (listOfEvents) {
+            $('.btn-favorite-delete').click(function () {
+                if (listOfEvents != 0) {
+                    MusicEvents.FavoritesDeleteButtonAjaxMethod(listOfEvents);
+                }
+            });
+
+            $('btn-favorite-buy').click(function () {
+                if (listOfEvents != 0) {
+                    MusicEvents.FavoritesBuyButtonAjaxMethod(listOfEvents);
+                }
+            });
+        };
+
+        m.FavoritesDeleteButtonAjaxMethod = function (listOfEvents) {
+            $.ajax({
+                type: "POST",
+                url: window.location.origin + "/Home/FavoritesDeleteEvent",
+                data: { "id": listOfEvents },
+                dataType: "json",
+                success: function (response) {
+                    for (var i = 0; i < listOfEvents.length; i++) {
+                        document.querySelector('[data-event-id="' + listOfEvents[i] + '"]').remove();
+                    }
+                },
+                failure: function (response) {
+                    alert(response.Message);
+                },
+                error: function (response) {
+                    alert(response.Message);
+                }
+            });
+
+        };
+
+        m.FavoritesBuyButtonAjaxMethod = function (listOfEvents) {
+            
+        };
     };
 
     m.DataTable = function () {

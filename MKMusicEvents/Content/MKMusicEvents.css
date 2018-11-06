@@ -294,10 +294,60 @@ label {
     border-color: #2F3847;
 }
 
-.FavoritesEventName {
+#NoEventsHeader {
+    text-align: center;
+    color: #2F3847;
+    padding-top: 50px;
+}
+
+#FavoriteEventsHeader {
+    text-align: center;
+    color: #2F3847;
+}
+
+#FavoriteEventsHrLine {
+    border: 1px solid #2F3847;
+    width: 150px;
+}
+
+#ListFavoritesDiv {
+    background-color: #364156;
+    width: 950px;
+}
+
+#ListFavoritesDiv img {
+    width: 238px; 
+    height: 200px; 
+    margin-left: -17px;
+}
+
+.FavoritesEventDiv {
+    margin-top: 20px;
+}
+
+.FavoritesEventDiv input {
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    float: right;
+    margin-top: -15px;
+}
+
+#ListFavoritesDiv p {
     color: #C57F1E;
 }
 
-.FavoritesEventDescription, .FavoritesEventDate {
-    color: #2F3847;
+#ListFavoritesDiv h3 {
+    color: #FCD7AD;
 }
+
+#ListFavoritesDiv h4 {
+    color: #FCD7AD;
+}
+
+#ListFavoritesDiv:hover {
+    background-color: #2F3847;
+}
+
+

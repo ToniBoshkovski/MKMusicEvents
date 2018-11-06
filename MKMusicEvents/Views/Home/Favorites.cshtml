@@ -6,28 +6,52 @@
 
 @if (Model.Count() == 0)
 {
-    <h2>There are no favorite events.</h2>
+    <h1 id="NoEventsHeader">There are no favorite events.</h1>
 }
 else
 {
-    foreach (var item in Model)
-    {
-        <div class="row" style="height: 200px">
-            <div class="col-md-3">
-                <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img src="@Url.Content(@item.Image)" style="width: 200px; height: 200px" /></a>
-            </div>
-            <div class="col-md-9">
-                <h3 class="FavoritesEventName">@item.Name</h3>
-                <p class="FavoritesEventDescription">@item.Description</p>
-                <h4 class="FavoritesEventDate">@item.Date.ToString("dd/MM/yyyy")</h4>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h1 id="FavoriteEventsHeader">Favorite events</h1>
+            <hr id="FavoriteEventsHrLine"/>
+            @foreach (var item in Model)
+            {
+                <div class="row EventDiv" id="ListFavoritesDiv" data-event-id="@item.Id" style="height: 200px">
+                    <div class="col-md-3">
+                        <a href="@Url.Action("EventInfo", "Home", new { id = item.Id})"><img src="@Url.Content(@item.Image)" /></a>
+                    </div>
+                    <div class="col-md-9 FavoritesEventDiv">
+                        <h3 class="FavoritesEventName">@item.Name</h3>
+                        <p class="FavoritesEventDescription">@item.Description</p>
+                        <h4 class="FavoritesEventDate">@item.Date.ToString("dd/MM/yyyy")</h4>
+                        <div class="checkbox"><input type="checkbox"></div>
+                    </div>
+                </div>
+            <br />
+            }
+
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <button class="btn btn-block btn-danger btn-lg btn-favorite-delete">Delete</button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-block btn-success btn-lg btn-favorite-buy">Buy</button>
+                </div>
+                <div class="col-md-3"></div>
             </div>
         </div>
-        <hr />
-    }
+        <div class="col-md-1"></div>
+    </div>
 }
 
 @section scripts {
     <script>
+        var listOfEvents = [];
+        
+        MusicEvents.FavoriteCheckboxEvent(listOfEvents);
+        MusicEvents.FavoritesButtons(listOfEvents);
         MusicEvents.FooterFixed();
     </script>
 }

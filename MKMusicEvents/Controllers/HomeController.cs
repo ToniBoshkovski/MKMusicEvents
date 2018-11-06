@@ -138,6 +138,7 @@ namespace MKMusicEvents.Controllers
                         db.Favorites.Remove(db.Favorites.Find(favoriteId));
                         db.SaveChanges();
                         result.ErrorCode = 100;
+                        result.Message = "Successufully removed event from favorites.";
                     }
                 }
                 else
@@ -160,8 +161,32 @@ namespace MKMusicEvents.Controllers
             public string Message { get; set; }
         }
 
-        public ActionResult Favorites()
+        [HttpPost]
+        public JsonResult FavoritesDeleteEvent(int[] id)
         {
+            try
+            {
+                var userId = User.Identity.GetUserId();
+
+                foreach (int eventId in id)
+                {
+                    if (db.Favorites.Any(f => f.UserId == userId && f.EventId == eventId))
+                    {
+                        int favoriteId = db.Favorites.Where(f => f.UserId == userId && f.EventId == eventId).Select(f => f.Id).FirstOrDefault();
+                        db.Favorites.Remove(db.Favorites.Find(favoriteId));
+                    }
+                }
+                db.SaveChanges();
+                return Json("All the customers deleted successfully!", JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        public ActionResult Favorites()
+       { 
             var userId = User.Identity.GetUserId();
             var model = from e in db.Events.ToList()
                         join f in db.Favorites.Where(f => f.UserId == userId).ToList() on e.Id equals f.EventId
